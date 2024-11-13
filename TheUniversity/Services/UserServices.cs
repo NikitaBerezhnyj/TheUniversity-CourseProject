@@ -6,7 +6,7 @@ namespace TheUniversity.Services
 
     internal class UserServices
     {
-    private SqlConnection connection;
+        private SqlConnection connection;
 
         public UserServices(SqlConnection connection)
         {

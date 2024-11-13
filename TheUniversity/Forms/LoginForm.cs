@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Data.SqlClient;
 using TheUniversity.Services;
 using TheUniversity.Configs;
@@ -10,6 +11,7 @@ namespace TheUniversity
         private AuthServices authService;
         private UserServices userServices;
         private SqlConnection connection;
+        private Thread openFormThread;
 
         public LoginForm()
         {
@@ -19,6 +21,17 @@ namespace TheUniversity
             connection = dbConfig.OpenConnection();
             authService = new AuthServices(connection);
             userServices = new UserServices(connection);
+
+            textBox1.Text = Properties.Settings.Default.Username;
+            textBox2.Text = Properties.Settings.Default.Password;
+        }
+
+        private void OpenViewForm(object viewForm)
+        {
+            if (viewForm is Form form)
+            {
+                Application.Run(form);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,6 +42,10 @@ namespace TheUniversity
             string role;
             if (authService.AuthenticateUser(username, password, out role))
             {
+                Properties.Settings.Default.Username = username;
+                Properties.Settings.Default.Password = password;
+                Properties.Settings.Default.Save();
+
                 Form viewForm = null;
                 if (role == "admin")
                 {
@@ -45,8 +62,10 @@ namespace TheUniversity
 
                 if (viewForm != null)
                 {
-                    viewForm.Show();
-                    this.Hide();
+                    this.Close();
+                    openFormThread = new Thread(() => OpenViewForm(viewForm));
+                    openFormThread.SetApartmentState(ApartmentState.STA);
+                    openFormThread.Start();
                 }
             }
             else
@@ -54,5 +73,6 @@ namespace TheUniversity
                 MessageBox.Show("Неправильно введене ім'я або пароль");
             }
         }
+
     }
 }

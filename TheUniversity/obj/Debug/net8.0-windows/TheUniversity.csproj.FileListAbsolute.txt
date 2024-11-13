@@ -25,3 +25,5 @@ C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\bin\Debug\net8
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\bin\Debug\net8.0-windows\TheUniversity.pdb
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.genruntimeconfig.cache
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\ref\TheUniversity.dll
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.sourcelink.json
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\bin\Debug\net8.0-windows\TheUniversity.dll.config
