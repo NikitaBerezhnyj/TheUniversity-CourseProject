@@ -33,7 +33,6 @@ namespace TheUniversity.Services
             return dataTable;
         }
 
-
         public void AddUser(string username, string password, string role) {
             string query = "INSERT INTO Users (username, password, role) VALUES (@username, @password, @role)";
             using (SqlCommand command = new SqlCommand(query, connection))

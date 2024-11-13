@@ -1,6 +1,6 @@
 ﻿namespace TheUniversity.Forms
 {
-    partial class StudentViewForm
+    partial class StudentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             button2 = new Button();
@@ -52,7 +50,26 @@
             button6 = new Button();
             comboBox3 = new ComboBox();
             textBox3 = new TextBox();
-            panel1.SuspendLayout();
+            menuStrip1 = new MenuStrip();
+            діїToolStripMenuItem = new ToolStripMenuItem();
+            користувачіToolStripMenuItem = new ToolStripMenuItem();
+            додатиToolStripMenuItem = new ToolStripMenuItem();
+            редагуватиToolStripMenuItem = new ToolStripMenuItem();
+            видалитиToolStripMenuItem = new ToolStripMenuItem();
+            париToolStripMenuItem = new ToolStripMenuItem();
+            додатиToolStripMenuItem1 = new ToolStripMenuItem();
+            редагуватиToolStripMenuItem1 = new ToolStripMenuItem();
+            видалитиToolStripMenuItem1 = new ToolStripMenuItem();
+            предметиToolStripMenuItem = new ToolStripMenuItem();
+            додатиToolStripMenuItem2 = new ToolStripMenuItem();
+            редагуватиToolStripMenuItem2 = new ToolStripMenuItem();
+            видалитиToolStripMenuItem2 = new ToolStripMenuItem();
+            викладачіToolStripMenuItem = new ToolStripMenuItem();
+            додатиToolStripMenuItem3 = new ToolStripMenuItem();
+            редагуватиToolStripMenuItem3 = new ToolStripMenuItem();
+            видалитиВикладачаToolStripMenuItem = new ToolStripMenuItem();
+            вихідToolStripMenuItem = new ToolStripMenuItem();
+            закритиToolStripMenuItem = new ToolStripMenuItem();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -60,27 +77,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(800, 24);
-            panel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Dock = DockStyle.Fill;
-            label1.Location = new Point(0, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(36, 15);
-            label1.TabIndex = 1;
-            label1.Text = "Вихід";
-            label1.Click += label1_Click;
             // 
             // tabControl1
             // 
@@ -299,17 +297,151 @@
             textBox3.Size = new Size(114, 23);
             textBox3.TabIndex = 12;
             // 
-            // StudentViewForm
+            // menuStrip1
+            // 
+            menuStrip1.BackColor = SystemColors.ControlLight;
+            menuStrip1.Items.AddRange(new ToolStripItem[] { діїToolStripMenuItem, вихідToolStripMenuItem, закритиToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.TabIndex = 2;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // діїToolStripMenuItem
+            // 
+            діїToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { користувачіToolStripMenuItem, париToolStripMenuItem, предметиToolStripMenuItem, викладачіToolStripMenuItem });
+            діїToolStripMenuItem.Name = "діїToolStripMenuItem";
+            діїToolStripMenuItem.Size = new Size(33, 20);
+            діїToolStripMenuItem.Text = "Дії";
+            // 
+            // користувачіToolStripMenuItem
+            // 
+            користувачіToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { додатиToolStripMenuItem, редагуватиToolStripMenuItem, видалитиToolStripMenuItem });
+            користувачіToolStripMenuItem.Name = "користувачіToolStripMenuItem";
+            користувачіToolStripMenuItem.Size = new Size(141, 22);
+            користувачіToolStripMenuItem.Text = "Користувачі";
+            користувачіToolStripMenuItem.Enabled = false;
+            // 
+            // додатиToolStripMenuItem
+            // 
+            додатиToolStripMenuItem.Name = "додатиToolStripMenuItem";
+            додатиToolStripMenuItem.Size = new Size(206, 22);
+            додатиToolStripMenuItem.Text = "Додати користувача";
+            // 
+            // редагуватиToolStripMenuItem
+            // 
+            редагуватиToolStripMenuItem.Name = "редагуватиToolStripMenuItem";
+            редагуватиToolStripMenuItem.Size = new Size(206, 22);
+            редагуватиToolStripMenuItem.Text = "Редагувати користувача";
+            // 
+            // видалитиToolStripMenuItem
+            // 
+            видалитиToolStripMenuItem.Name = "видалитиToolStripMenuItem";
+            видалитиToolStripMenuItem.Size = new Size(206, 22);
+            видалитиToolStripMenuItem.Text = "Видалити користувача";
+            // 
+            // париToolStripMenuItem
+            // 
+            париToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { додатиToolStripMenuItem1, редагуватиToolStripMenuItem1, видалитиToolStripMenuItem1 });
+            париToolStripMenuItem.Name = "париToolStripMenuItem";
+            париToolStripMenuItem.Size = new Size(141, 22);
+            париToolStripMenuItem.Text = "Пари";
+            париToolStripMenuItem.Enabled = false;
+            // 
+            // додатиToolStripMenuItem1
+            // 
+            додатиToolStripMenuItem1.Name = "додатиToolStripMenuItem1";
+            додатиToolStripMenuItem1.Size = new Size(163, 22);
+            додатиToolStripMenuItem1.Text = "Додати пару";
+            // 
+            // редагуватиToolStripMenuItem1
+            // 
+            редагуватиToolStripMenuItem1.Name = "редагуватиToolStripMenuItem1";
+            редагуватиToolStripMenuItem1.Size = new Size(163, 22);
+            редагуватиToolStripMenuItem1.Text = "Редагувати пару";
+            // 
+            // видалитиToolStripMenuItem1
+            // 
+            видалитиToolStripMenuItem1.Name = "видалитиToolStripMenuItem1";
+            видалитиToolStripMenuItem1.Size = new Size(163, 22);
+            видалитиToolStripMenuItem1.Text = "Видалити пару";
+            // 
+            // предметиToolStripMenuItem
+            // 
+            предметиToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { додатиToolStripMenuItem2, редагуватиToolStripMenuItem2, видалитиToolStripMenuItem2 });
+            предметиToolStripMenuItem.Name = "предметиToolStripMenuItem";
+            предметиToolStripMenuItem.Size = new Size(141, 22);
+            предметиToolStripMenuItem.Text = "Предмети";
+            предметиToolStripMenuItem.Enabled = false;
+            // 
+            // додатиToolStripMenuItem2
+            // 
+            додатиToolStripMenuItem2.Name = "додатиToolStripMenuItem2";
+            додатиToolStripMenuItem2.Size = new Size(183, 22);
+            додатиToolStripMenuItem2.Text = "Додати предмет";
+            // 
+            // редагуватиToolStripMenuItem2
+            // 
+            редагуватиToolStripMenuItem2.Name = "редагуватиToolStripMenuItem2";
+            редагуватиToolStripMenuItem2.Size = new Size(183, 22);
+            редагуватиToolStripMenuItem2.Text = "Редагувати предмет";
+            // 
+            // видалитиToolStripMenuItem2
+            // 
+            видалитиToolStripMenuItem2.Name = "видалитиToolStripMenuItem2";
+            видалитиToolStripMenuItem2.Size = new Size(183, 22);
+            видалитиToolStripMenuItem2.Text = "Видалити предмет";
+            // 
+            // викладачіToolStripMenuItem
+            // 
+            викладачіToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { додатиToolStripMenuItem3, редагуватиToolStripMenuItem3, видалитиВикладачаToolStripMenuItem });
+            викладачіToolStripMenuItem.Name = "викладачіToolStripMenuItem";
+            викладачіToolStripMenuItem.Size = new Size(141, 22);
+            викладачіToolStripMenuItem.Text = "Викладачі";
+            викладачіToolStripMenuItem.Enabled = false;
+            // 
+            // додатиToolStripMenuItem3
+            // 
+            додатиToolStripMenuItem3.Name = "додатиToolStripMenuItem3";
+            додатиToolStripMenuItem3.Size = new Size(194, 22);
+            додатиToolStripMenuItem3.Text = "Додати викладача";
+            // 
+            // редагуватиToolStripMenuItem3
+            // 
+            редагуватиToolStripMenuItem3.Name = "редагуватиToolStripMenuItem3";
+            редагуватиToolStripMenuItem3.Size = new Size(194, 22);
+            редагуватиToolStripMenuItem3.Text = "Редагувати викладача";
+            // 
+            // видалитиВикладачаToolStripMenuItem
+            // 
+            видалитиВикладачаToolStripMenuItem.Name = "видалитиВикладачаToolStripMenuItem";
+            видалитиВикладачаToolStripMenuItem.Size = new Size(194, 22);
+            видалитиВикладачаToolStripMenuItem.Text = "Видалити викладача";
+            // 
+            // вихідToolStripMenuItem
+            // 
+            вихідToolStripMenuItem.Name = "вихідToolStripMenuItem";
+            вихідToolStripMenuItem.Size = new Size(48, 20);
+            вихідToolStripMenuItem.Text = "Вихід";
+            вихідToolStripMenuItem.Click += вихідToolStripMenuItem_Click;
+            // 
+            // закритиToolStripMenuItem
+            // 
+            закритиToolStripMenuItem.Name = "закритиToolStripMenuItem";
+            закритиToolStripMenuItem.Size = new Size(64, 20);
+            закритиToolStripMenuItem.Text = "Закрити";
+            закритиToolStripMenuItem.Click += закритиToolStripMenuItem_Click;
+            // 
+            // StudentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(tabControl1);
-            Controls.Add(panel1);
-            Name = "StudentViewForm";
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
+            Name = "StudentForm";
             Text = "StudentViewForm";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
@@ -320,13 +452,13 @@
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Panel panel1;
-        private Label label1;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private Label label2;
@@ -349,5 +481,25 @@
         private Button button6;
         private ComboBox comboBox3;
         private TextBox textBox3;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem діїToolStripMenuItem;
+        private ToolStripMenuItem вихідToolStripMenuItem;
+        private ToolStripMenuItem закритиToolStripMenuItem;
+        private ToolStripMenuItem користувачіToolStripMenuItem;
+        private ToolStripMenuItem додатиToolStripMenuItem;
+        private ToolStripMenuItem редагуватиToolStripMenuItem;
+        private ToolStripMenuItem видалитиToolStripMenuItem;
+        private ToolStripMenuItem париToolStripMenuItem;
+        private ToolStripMenuItem додатиToolStripMenuItem1;
+        private ToolStripMenuItem редагуватиToolStripMenuItem1;
+        private ToolStripMenuItem видалитиToolStripMenuItem1;
+        private ToolStripMenuItem предметиToolStripMenuItem;
+        private ToolStripMenuItem додатиToolStripMenuItem2;
+        private ToolStripMenuItem редагуватиToolStripMenuItem2;
+        private ToolStripMenuItem видалитиToolStripMenuItem2;
+        private ToolStripMenuItem викладачіToolStripMenuItem;
+        private ToolStripMenuItem додатиToolStripMenuItem3;
+        private ToolStripMenuItem редагуватиToolStripMenuItem3;
+        private ToolStripMenuItem видалитиВикладачаToolStripMenuItem;
     }
 }

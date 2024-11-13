@@ -7,7 +7,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace TheUniversity.Forms
 {
-    public partial class StudentViewForm : Form
+    public partial class StudentForm : Form
     {
         private LessonServices lessonServices;
         private SubjectServices subjectServices;
@@ -40,7 +40,7 @@ namespace TheUniversity.Forms
             { "вченому ступеню", "academic_degree" }
         };
 
-        public StudentViewForm()
+        public StudentForm()
         {
             InitializeComponent();
 
@@ -178,7 +178,7 @@ namespace TheUniversity.Forms
         }
 
         // Верхня панель
-        private void label1_Click(object sender, EventArgs e)
+        private void вихідToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Username = "";
             Properties.Settings.Default.Password = "";
@@ -187,6 +187,11 @@ namespace TheUniversity.Forms
             openFormThread = new Thread(BackToLoginForm);
             openFormThread.SetApartmentState(ApartmentState.STA);
             openFormThread.Start();
+        }
+
+        private void закритиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

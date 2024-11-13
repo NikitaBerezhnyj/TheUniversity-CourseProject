@@ -7,10 +7,7 @@ C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\bin\Debug\net8
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.csproj.AssemblyReference.cache
-C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.AdminViewForm.resources
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.LoginForm.resources
-C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.StudentViewForm.resources
-C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.TeacherViewForm.resources
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.csproj.GenerateResource.cache
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.AssemblyInfoInputs.cache
@@ -27,3 +24,6 @@ C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\ref\TheUniversity.dll
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.sourcelink.json
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\bin\Debug\net8.0-windows\TheUniversity.dll.config
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.TeacherForm.resources
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.AdminForm.resources
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.StudentForm.resources

@@ -49,15 +49,15 @@ namespace TheUniversity
                 Form viewForm = null;
                 if (role == "admin")
                 {
-                    viewForm = new AdminViewForm();
+                    viewForm = new AdminForm();
                 }
                 else if (role == "teacher")
                 {
-                    viewForm = new TeacherViewForm();
+                    viewForm = new TeacherForm();
                 }
                 else if (role == "student")
                 {
-                    viewForm = new StudentViewForm();
+                    viewForm = new StudentForm();
                 }
 
                 if (viewForm != null)
