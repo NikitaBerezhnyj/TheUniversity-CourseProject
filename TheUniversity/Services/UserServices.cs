@@ -24,6 +24,22 @@ namespace TheUniversity.Services
                 {
                     adapter.Fill(dataTable);
                 }
+
+                var columnMapping = new Dictionary<string, string>
+                {
+                    { "username", "Ім'я" },
+                    { "password", "Пароль" },
+                    { "role", "Роль в системі" },
+                    { "id", "ID" }
+                };
+
+                foreach (var map in columnMapping)
+                {
+                    if (dataTable.Columns.Contains(map.Key))
+                    {
+                        dataTable.Columns[map.Key].ColumnName = map.Value;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -32,6 +48,55 @@ namespace TheUniversity.Services
 
             return dataTable;
         }
+
+        public DataTable SearchUsers(string searchColumn, string searchValue)
+        {
+            if (connection.State != ConnectionState.Open)
+            {
+                connection.Open();
+            }
+
+            // Використовуємо оператор LIKE для часткового збігу
+            string query = $"SELECT * FROM Users WHERE {searchColumn} LIKE @searchValue";
+
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@searchValue", $"%{searchValue}%");
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+
+                var columnMapping = new Dictionary<string, string>
+                {
+                    { "username", "Ім'я" },
+                    { "password", "Пароль" },
+                    { "role", "Роль в системі" },
+                    { "id", "ID" }
+                };
+
+                foreach (var map in columnMapping)
+                {
+                    if (dataTable.Columns.Contains(map.Key))
+                    {
+                        dataTable.Columns[map.Key].ColumnName = map.Value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка: {ex.Message}", "Щось пішло не так");
+            }
+
+            return dataTable;
+        }
+
 
         public void AddUser(string username, string password, string role) {
             string query = "INSERT INTO Users (username, password, role) VALUES (@username, @password, @role)";

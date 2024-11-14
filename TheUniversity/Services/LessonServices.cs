@@ -32,10 +32,6 @@ namespace TheUniversity.Services
                     adapter.Fill(dataTable);
                 }
 
-                dataTable.Columns.Remove("id");
-                dataTable.Columns.Remove("teacher_id");
-                dataTable.Columns.Remove("subject_id");
-
                 var columnMapping = new Dictionary<string, string>
                 {
                     { "teacher_name", "Викладач" },
@@ -75,7 +71,8 @@ namespace TheUniversity.Services
             FROM Lesson l
             LEFT JOIN Teacher t ON l.teacher_id = t.id
             LEFT JOIN Subject s ON l.subject_id = s.id
-            WHERE l.{searchColumn} = @searchValue";
+            WHERE l.{searchColumn} LIKE @searchValue";
+
 
             DataTable dataTable = new DataTable();
 
@@ -83,17 +80,13 @@ namespace TheUniversity.Services
             {
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@searchValue", searchValue);
+                    cmd.Parameters.AddWithValue("@searchValue", $"%{searchValue}%");
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
                         adapter.Fill(dataTable);
                     }
                 }
-
-                dataTable.Columns.Remove("id");
-                dataTable.Columns.Remove("teacher_id");
-                dataTable.Columns.Remove("subject_id");
 
                 var columnMapping = new Dictionary<string, string>
                 {

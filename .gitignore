@@ -1,1 +1,65 @@
+# Папки та файли Visual Studio
+.vscode/
 .vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Папка для збережених налаштувань
+.vscode/
+
+# Build результат (папки та файли)
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+
+# Файли для розгортання
+.publish/
+
+# Конфігураційні файли налаштувань
+appsettings*.json
+*.ps1
+*.cmd
+
+# Автоматично згенеровані файли для Windows Forms
+*.Designer.cs
+
+# Налаштування пакунків
+*.nupkg
+*.snupkg
+packages/
+*.Package
+
+# Конфігураційні файли для NuGet
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Історія вивантажень NuGet
+*.nuget.cache
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# User-specific files
+*.rsuser
+*.sln.ide
+*.cache
+
+# StyleCop
+StyleCopReport.xml
+
+# TeamCity
+_TeamCity/
+
+# DotCover
+*.dotCover
+
+# Rider
+.idea/
+
+# Mono auto generated files
+mono_crash.*

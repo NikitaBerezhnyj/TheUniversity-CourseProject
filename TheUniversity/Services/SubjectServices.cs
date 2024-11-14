@@ -44,8 +44,6 @@ namespace TheUniversity.Services
                         dataTable.Columns[map.Key].ColumnName = map.Value;
                     }
                 }
-
-                dataTable.Columns.Remove("id");
             }
             catch (Exception ex)
             {
@@ -62,7 +60,7 @@ namespace TheUniversity.Services
                 connection.Open();
             }
 
-            string query = $"SELECT * FROM Subject WHERE {searchColumn} = @searchValue";
+            string query = $"SELECT * FROM Subject WHERE {searchColumn} LIKE @searchValue";
 
             DataTable dataTable = new DataTable();
 
@@ -70,7 +68,7 @@ namespace TheUniversity.Services
             {
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@searchValue", searchValue);
+                    cmd.Parameters.AddWithValue("@searchValue", $"%{searchValue}%");
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
@@ -93,8 +91,6 @@ namespace TheUniversity.Services
                         dataTable.Columns[map.Key].ColumnName = map.Value;
                     }
                 }
-
-                dataTable.Columns.Remove("id");
             }
             catch (Exception ex)
             {

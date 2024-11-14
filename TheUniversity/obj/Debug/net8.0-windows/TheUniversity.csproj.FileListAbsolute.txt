@@ -27,3 +27,11 @@ C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\bin\Debug\net8
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.TeacherForm.resources
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.AdminForm.resources
 C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.StudentForm.resources
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.Action.Lesson.AddLessonForm.resources
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.Action.Lesson.EditLessonForm.resources
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.Action.Subject.AddSubjectForm.resources
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.Action.Subject.EditSubjectForm.resources
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.Action.Teacher.AddTeacherForm.resources
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.Action.Teacher.EditTeacherForm.resources
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.Action.User.AddUserForm.resources
+C:\Users\NikitaBerezhnyj\source\repos\TheUniversity\TheUniversity\obj\Debug\net8.0-windows\TheUniversity.Forms.Action.User.EditUserForm.resources
