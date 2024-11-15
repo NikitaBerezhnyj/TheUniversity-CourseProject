@@ -84,12 +84,6 @@
             toolStripMenuItem6 = new ToolStripMenuItem();
             toolStripMenuItem7 = new ToolStripMenuItem();
             toolStripMenuItem8 = new ToolStripMenuItem();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            button9 = new Button();
-            button10 = new Button();
-            button11 = new Button();
-            button12 = new Button();
-            button13 = new Button();
             menuStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -100,7 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
-            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -112,7 +105,7 @@
             menuStrip1.Size = new Size(800, 24);
             menuStrip1.TabIndex = 3;
             menuStrip1.Text = "menuStrip1";
-            menuStrip1.Visible = false;
+            menuStrip1.BringToFront();
             // 
             // actionsToolStripMenuItem
             // 
@@ -125,8 +118,9 @@
             // 
             usersActionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addUserToolStripMenuItem, editUserToolStripMenuItem, removeUserToolStripMenuItem });
             usersActionsToolStripMenuItem.Name = "usersActionsToolStripMenuItem";
-            usersActionsToolStripMenuItem.Size = new Size(141, 22);
+            usersActionsToolStripMenuItem.Size = new Size(180, 22);
             usersActionsToolStripMenuItem.Text = "Користувачі";
+            usersActionsToolStripMenuItem.Click += usersActionsToolStripMenuItem_Click;
             // 
             // addUserToolStripMenuItem
             // 
@@ -153,7 +147,7 @@
             // 
             lessonActionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addLessonToolStripMenuItem, editLessonToolStripMenuItem, removeLessonToolStripMenuItem });
             lessonActionsToolStripMenuItem.Name = "lessonActionsToolStripMenuItem";
-            lessonActionsToolStripMenuItem.Size = new Size(141, 22);
+            lessonActionsToolStripMenuItem.Size = new Size(180, 22);
             lessonActionsToolStripMenuItem.Text = "Пари";
             // 
             // addLessonToolStripMenuItem
@@ -181,7 +175,7 @@
             // 
             subjectActionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addSubjectToolStripMenuItem, editSubjectToolStripMenuItem, removeSubjectToolStripMenuItem });
             subjectActionsToolStripMenuItem.Name = "subjectActionsToolStripMenuItem";
-            subjectActionsToolStripMenuItem.Size = new Size(141, 22);
+            subjectActionsToolStripMenuItem.Size = new Size(180, 22);
             subjectActionsToolStripMenuItem.Text = "Предмети";
             // 
             // addSubjectToolStripMenuItem
@@ -209,7 +203,7 @@
             // 
             teacherActionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addTeacherToolStripMenuItem, editTeacherToolStripMenuItem, removeTeacherToolStripMenuItem });
             teacherActionsToolStripMenuItem.Name = "teacherActionsToolStripMenuItem";
-            teacherActionsToolStripMenuItem.Size = new Size(141, 22);
+            teacherActionsToolStripMenuItem.Size = new Size(180, 22);
             teacherActionsToolStripMenuItem.Text = "Викладачі";
             // 
             // addTeacherToolStripMenuItem
@@ -580,77 +574,14 @@
             toolStripMenuItem8.Size = new Size(180, 22);
             toolStripMenuItem8.Text = "toolStripMenuItem8";
             // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Controls.Add(button9);
-            flowLayoutPanel1.Controls.Add(button10);
-            flowLayoutPanel1.Controls.Add(button11);
-            flowLayoutPanel1.Controls.Add(button12);
-            flowLayoutPanel1.Controls.Add(button13);
-            flowLayoutPanel1.Dock = DockStyle.Top;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(800, 21);
-            flowLayoutPanel1.TabIndex = 5;
-            // 
-            // button9
-            // 
-            button9.Location = new Point(3, 3);
-            button9.Name = "button9";
-            button9.Size = new Size(75, 23);
-            button9.TabIndex = 0;
-            button9.Text = "button9";
-            button9.UseVisualStyleBackColor = true;
-            button9.Click += button9_Click;
-            // 
-            // button10
-            // 
-            button10.Location = new Point(84, 3);
-            button10.Name = "button10";
-            button10.Size = new Size(75, 23);
-            button10.TabIndex = 1;
-            button10.Text = "button10";
-            button10.UseVisualStyleBackColor = true;
-            button10.Click += button10_Click;
-            // 
-            // button11
-            // 
-            button11.Location = new Point(165, 3);
-            button11.Name = "button11";
-            button11.Size = new Size(75, 23);
-            button11.TabIndex = 2;
-            button11.Text = "button11";
-            button11.UseVisualStyleBackColor = true;
-            button11.Click += button11_Click;
-            // 
-            // button12
-            // 
-            button12.Location = new Point(246, 3);
-            button12.Name = "button12";
-            button12.Size = new Size(75, 23);
-            button12.TabIndex = 3;
-            button12.Text = "button12";
-            button12.UseVisualStyleBackColor = true;
-            button12.Click += button12_Click;
-            // 
-            // button13
-            // 
-            button13.Location = new Point(327, 3);
-            button13.Name = "button13";
-            button13.Size = new Size(75, 23);
-            button13.TabIndex = 4;
-            button13.Text = "button13";
-            button13.UseVisualStyleBackColor = true;
-            button13.Click += button13_Click;
-            // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(flowLayoutPanel1);
             Controls.Add(tabControl1);
             Controls.Add(menuStrip1);
+            Controls.SetChildIndex(menuStrip1, 0);
             Name = "AdminForm";
             Text = "AdminViewForm";
             menuStrip1.ResumeLayout(false);
@@ -668,7 +599,6 @@
             tabPage4.ResumeLayout(false);
             tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
-            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -731,11 +661,5 @@
         private ToolStripMenuItem toolStripMenuItem6;
         private ToolStripMenuItem toolStripMenuItem7;
         private ToolStripMenuItem toolStripMenuItem8;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Button button9;
-        private Button button10;
-        private Button button11;
-        private Button button12;
-        private Button button13;
     }
 }

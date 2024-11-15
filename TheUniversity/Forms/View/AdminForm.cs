@@ -6,6 +6,9 @@ using TheUniversity.Services;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using TheUniversity.Forms.Action.User;
 using System.Windows.Forms;
+using TheUniversity.Forms.Action.Teacher;
+using TheUniversity.Forms.Action.Subject;
+using TheUniversity.Forms.Action.Lesson;
 
 namespace TheUniversity.Forms
 {
@@ -296,111 +299,6 @@ namespace TheUniversity.Forms
 
         private void removeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                int selectedUserId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["id"].Value);
-                var result = MessageBox.Show("Ви впевнені, що хочете видалити цього користувача?", "Підтвердження видалення", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-
-                if (result == DialogResult.OK)
-                {
-                    userServices.RemoveUser(selectedUserId);
-                    DataTable users = userServices.GetUsers();
-                    if (users != null)
-                    {
-                        dataGridView4.DataSource = users;
-                    }
-                    MessageBox.Show("Користувача успішно видалено.", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Видалення скасовано.", "Скасування", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Будь ласка, оберіть користувача для видалення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        // Взаємодія з парами
-        private void addLessonToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void editLessonToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void removeLessonToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Взаємодія з предметами
-        private void addSubjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void editSubjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void removeSubjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Взаємодія з викладачами
-        private void addTeacherToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void editTeacherToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void removeTeacherToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Кнопки виходу
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.Username = "";
-            Properties.Settings.Default.Password = "";
-            Properties.Settings.Default.Save();
-            this.Close();
-            openFormThread = new Thread(BackToLoginForm);
-            openFormThread.SetApartmentState(ApartmentState.STA);
-            openFormThread.Start();
-        }
-
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        // ____________________________________________________________________________________________
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
             if (dataGridView4.SelectedRows.Count > 0)
             {
                 int selectedUserId = Convert.ToInt32(dataGridView4.SelectedRows[0].Cells["id"].Value);
@@ -425,7 +323,203 @@ namespace TheUniversity.Forms
             }
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        // Взаємодія з парами
+        private void addLessonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddLessonForm addLessonForm = new AddLessonForm();
+            if (addLessonForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadLessons();
+            }
+        }
+
+        private void editLessonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                if (int.TryParse(dataGridView1.SelectedRows[0].Cells["id"].Value.ToString(), out int selectedId))
+                {
+                    string selectedRoom = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Аудиторія"].Value);
+                    DateTime selectedDate = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells["Дата"].Value);
+                    TimeSpan selectedTime = (TimeSpan)dataGridView1.SelectedRows[0].Cells["Час"].Value;
+                    string selectedLessonType = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Тип заняття"].Value);
+                    string selectedGroup = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Група"].Value);
+                    int selectedTeacherId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["teacher_id"].Value);
+                    int selectedSubjectId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["subject_id"].Value);
+
+                    EditLessonForm editLessonForm = new EditLessonForm(selectedId, selectedRoom, selectedDate, selectedTime, selectedLessonType, selectedGroup, selectedTeacherId, selectedSubjectId);
+                    if (editLessonForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadLessons();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Помилка зчитування ID предмета.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть предмет для редагування.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void removeLessonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int selectedUserId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["id"].Value);
+                var result = MessageBox.Show("Ви впевнені, що хочете видалити цю пару?", "Підтвердження видалення", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.OK)
+                {
+                    try
+                    {
+                        lessonServices.RemoveLesson(selectedUserId);
+                        LoadLessons();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Помилка при видаленні пари: " + ex.Message, "Помилка");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть пару для видалення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Взаємодія з предметами
+        private void addSubjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddSubjectForm addSubjectForm = new AddSubjectForm();
+            if (addSubjectForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadSubject();
+            }
+        }
+
+        private void editSubjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                if (int.TryParse(dataGridView2.SelectedRows[0].Cells["id"].Value.ToString(), out int selectedId))
+                {
+                    string selectedName = Convert.ToString(dataGridView2.SelectedRows[0].Cells["Назва"].Value);
+                    string selectedControlType = Convert.ToString(dataGridView2.SelectedRows[0].Cells["Тип контролю"].Value);
+                    bool selectedMandatory = Convert.ToBoolean(dataGridView2.SelectedRows[0].Cells["Обов'язковість"].Value);
+                    int selectedHours = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["Кількість годин"].Value);
+
+                    EditSubjectForm editSubjectForm = new EditSubjectForm(selectedId, selectedName, selectedControlType, selectedMandatory, selectedHours);
+                    if (editSubjectForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadSubject();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Помилка зчитування ID предмета.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть предмет для редагування.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void removeSubjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                int selectedUserId = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["id"].Value);
+                var result = MessageBox.Show("Ви впевнені, що хочете видалити цей предмет?", "Підтвердження видалення", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.OK)
+                {
+                    try
+                    {
+                        subjectServices.RemoveSubject(selectedUserId);
+                        LoadSubject();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Помилка при видаленні предему: " + ex.Message, "Помилка");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть предмет для видалення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Взаємодія з викладачами
+        private void addTeacherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddTeacherForm addTeacherForm = new AddTeacherForm();
+            if (addTeacherForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadTeachers();
+            }
+        }
+
+        private void editTeacherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.SelectedRows.Count > 0)
+            {
+                if (int.TryParse(dataGridView3.SelectedRows[0].Cells["id"].Value.ToString(), out int selectedUserId))
+                {
+                    string selectedFullName = Convert.ToString(dataGridView3.SelectedRows[0].Cells["ПІП"].Value);
+                    string selectedPosition = Convert.ToString(dataGridView3.SelectedRows[0].Cells["Посада"].Value);
+                    string selectedDepartment = Convert.ToString(dataGridView3.SelectedRows[0].Cells["Кафедра"].Value);
+                    string selectedAcademicDegree = Convert.ToString(dataGridView3.SelectedRows[0].Cells["Вчений ступінь"].Value);
+
+                    EditTeacherForm editTeacherForm = new EditTeacherForm(selectedUserId, selectedFullName, selectedPosition, selectedDepartment, selectedAcademicDegree);
+                    if (editTeacherForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadTeachers();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Помилка зчитування ID викладача.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть викладача для редагування.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void removeTeacherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.SelectedRows.Count > 0)
+            {
+                int selectedUserId = Convert.ToInt32(dataGridView3.SelectedRows[0].Cells["id"].Value);
+                var result = MessageBox.Show("Ви впевнені, що хочете видалити цього викладача?", "Підтвердження видалення", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.OK)
+                {
+                    try
+                    {
+                        teacherServices.RemoveTeacher(selectedUserId);
+                        LoadTeachers();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Помилка при видаленні користувача: " + ex.Message, "Помилка");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть користувача для видалення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Кнопки виходу
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Username = "";
             Properties.Settings.Default.Password = "";
@@ -436,9 +530,14 @@ namespace TheUniversity.Forms
             openFormThread.Start();
         }
 
-        private void button13_Click(object sender, EventArgs e)
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void usersActionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("It is must work!!!");
         }
     }
 }

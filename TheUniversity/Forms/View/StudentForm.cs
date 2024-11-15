@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using TheUniversity.Configs;
 using TheUniversity.Services;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Windows.Forms;
 
 namespace TheUniversity.Forms
 {
@@ -50,9 +51,41 @@ namespace TheUniversity.Forms
             subjectServices = new SubjectServices(connection);
             teacherServices = new TeacherServices(connection);
 
-            dataGridView1.DataSource = lessonServices.GetLessons();
-            dataGridView2.DataSource = subjectServices.GetSubjects();
-            dataGridView3.DataSource = teacherServices.GetTeachers();
+            LoadLessons();
+            LoadSubject();
+            LoadTeachers();
+        }
+
+        private void LoadLessons()
+        {
+            DataTable lessons = lessonServices.GetLessons();
+            if (lessons != null)
+            {
+                dataGridView1.DataSource = lessons;
+                dataGridView1.Columns["id"].Visible = false;
+                dataGridView1.Columns["teacher_id"].Visible = false;
+                dataGridView1.Columns["subject_id"].Visible = false;
+            }
+        }
+
+        private void LoadSubject()
+        {
+            DataTable subjects = subjectServices.GetSubjects();
+            if (subjects != null)
+            {
+                dataGridView2.DataSource = subjects;
+                dataGridView2.Columns["id"].Visible = false;
+            }
+        }
+
+        private void LoadTeachers()
+        {
+            DataTable teachers = teacherServices.GetTeachers();
+            if (teachers != null)
+            {
+                dataGridView3.DataSource = teachers;
+                dataGridView3.Columns["id"].Visible = false;
+            }
         }
 
         private void BackToLoginForm(object form)
@@ -92,11 +125,7 @@ namespace TheUniversity.Forms
             comboBox1.SelectedIndex = -1;
             textBox1.Clear();
 
-            DataTable lessons = lessonServices.GetLessons();
-            if (lessons != null)
-            {
-                dataGridView1.DataSource = lessons;
-            }
+            LoadLessons();
         }
 
         // Вкладка перегляду предметів
@@ -131,11 +160,7 @@ namespace TheUniversity.Forms
             comboBox2.SelectedIndex = -1;
             textBox2.Clear();
 
-            DataTable subjects = subjectServices.GetSubjects();
-            if (subjects != null)
-            {
-                dataGridView2.DataSource = subjects;
-            }
+            LoadSubject();
         }
 
         // Вкладка перегляду викладачів
@@ -170,11 +195,7 @@ namespace TheUniversity.Forms
             comboBox3.SelectedIndex = -1;
             textBox3.Clear();
 
-            DataTable teachers = teacherServices.GetTeachers();
-            if (teachers != null)
-            {
-                dataGridView3.DataSource = teachers;
-            }
+            LoadTeachers();
         }
 
         // Верхня панель

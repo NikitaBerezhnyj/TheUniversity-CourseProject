@@ -23,9 +23,6 @@ appsettings*.json
 *.ps1
 *.cmd
 
-# Автоматично згенеровані файли для Windows Forms
-*.Designer.cs
-
 # Налаштування пакунків
 *.nupkg
 *.snupkg

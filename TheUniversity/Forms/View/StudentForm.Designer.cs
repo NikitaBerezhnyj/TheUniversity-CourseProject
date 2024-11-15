@@ -119,6 +119,7 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(0, 35);
             dataGridView1.Name = "dataGridView1";
@@ -188,6 +189,7 @@
             // 
             // dataGridView2
             // 
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(0, 33);
             dataGridView2.Name = "dataGridView2";
@@ -256,6 +258,7 @@
             // 
             // dataGridView3
             // 
+            dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView3.Location = new Point(0, 33);
             dataGridView3.Name = "dataGridView3";
@@ -317,10 +320,10 @@
             // користувачіToolStripMenuItem
             // 
             користувачіToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { додатиToolStripMenuItem, редагуватиToolStripMenuItem, видалитиToolStripMenuItem });
+            користувачіToolStripMenuItem.Enabled = false;
             користувачіToolStripMenuItem.Name = "користувачіToolStripMenuItem";
             користувачіToolStripMenuItem.Size = new Size(141, 22);
             користувачіToolStripMenuItem.Text = "Користувачі";
-            користувачіToolStripMenuItem.Enabled = false;
             // 
             // додатиToolStripMenuItem
             // 
@@ -343,10 +346,10 @@
             // париToolStripMenuItem
             // 
             париToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { додатиToolStripMenuItem1, редагуватиToolStripMenuItem1, видалитиToolStripMenuItem1 });
+            париToolStripMenuItem.Enabled = false;
             париToolStripMenuItem.Name = "париToolStripMenuItem";
             париToolStripMenuItem.Size = new Size(141, 22);
             париToolStripMenuItem.Text = "Пари";
-            париToolStripMenuItem.Enabled = false;
             // 
             // додатиToolStripMenuItem1
             // 
@@ -369,10 +372,10 @@
             // предметиToolStripMenuItem
             // 
             предметиToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { додатиToolStripMenuItem2, редагуватиToolStripMenuItem2, видалитиToolStripMenuItem2 });
+            предметиToolStripMenuItem.Enabled = false;
             предметиToolStripMenuItem.Name = "предметиToolStripMenuItem";
             предметиToolStripMenuItem.Size = new Size(141, 22);
             предметиToolStripMenuItem.Text = "Предмети";
-            предметиToolStripMenuItem.Enabled = false;
             // 
             // додатиToolStripMenuItem2
             // 
@@ -395,10 +398,10 @@
             // викладачіToolStripMenuItem
             // 
             викладачіToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { додатиToolStripMenuItem3, редагуватиToolStripMenuItem3, видалитиВикладачаToolStripMenuItem });
+            викладачіToolStripMenuItem.Enabled = false;
             викладачіToolStripMenuItem.Name = "викладачіToolStripMenuItem";
             викладачіToolStripMenuItem.Size = new Size(141, 22);
             викладачіToolStripMenuItem.Text = "Викладачі";
-            викладачіToolStripMenuItem.Enabled = false;
             // 
             // додатиToolStripMenuItem3
             // 

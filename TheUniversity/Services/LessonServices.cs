@@ -115,5 +115,167 @@ namespace TheUniversity.Services
             return dataTable;
         }
 
+        public Dictionary<int, string> GetTeacherDictionary()
+        {
+            Dictionary<int, string> teachersDictionary = new Dictionary<int, string>();
+            string query = "SELECT id, full_name FROM Teacher";
+
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        string fullName = reader.GetString(1);
+                        teachersDictionary.Add(id, fullName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Something went wrong");
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+
+            return teachersDictionary;
+        }
+
+        public Dictionary<int, string> GetSubjectDictionary()
+        {
+            Dictionary<int, string> subjectsDictionary = new Dictionary<int, string>();
+            string query = "SELECT id, name FROM Subject";
+
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        string name = reader.GetString(1);
+                        subjectsDictionary.Add(id, name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Something went wrong");
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+
+            return subjectsDictionary;
+        }
+
+
+        public void AddLesson(string room, DateTime date, TimeSpan time, string lesson_type, string group, int teacher_id, int subject_id)
+        {
+            string query = "INSERT INTO Lesson (room, date, time, lesson_type, [group], teacher_id, subject_id) " +
+                           "VALUES (@room, @date, @time, @lesson_type, @group, @teacher_id, @subject_id)";
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@room", room);
+                    command.Parameters.AddWithValue("@date", date);
+                    command.Parameters.AddWithValue("@time", time);
+                    command.Parameters.AddWithValue("@lesson_type", lesson_type);
+                    command.Parameters.AddWithValue("@group", group);
+                    command.Parameters.AddWithValue("@teacher_id", teacher_id);
+                    command.Parameters.AddWithValue("@subject_id", subject_id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while adding lesson: {ex.Message}", "Something went wrong");
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+
+        public void EditLesson(int id, string room, DateTime date, TimeSpan time, string lesson_type, string group, int teacher_id, int subject_id)
+        {
+            string query = "UPDATE Lesson SET room = @room, date = @date, time = @time, lesson_type = @lesson_type, " +
+                           "[group] = @group, teacher_id = @teacher_id, subject_id = @subject_id WHERE id = @id";
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@room", room);
+                    command.Parameters.AddWithValue("@date", date);
+                    command.Parameters.AddWithValue("@time", time);
+                    command.Parameters.AddWithValue("@lesson_type", lesson_type);
+                    command.Parameters.AddWithValue("@group", group);
+                    command.Parameters.AddWithValue("@teacher_id", teacher_id);
+                    command.Parameters.AddWithValue("@subject_id", subject_id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while editing lesson: {ex.Message}", "Something went wrong");
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public void RemoveLesson(int id)
+        {
+            string query = "DELETE FROM Lesson WHERE id = @id";
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
