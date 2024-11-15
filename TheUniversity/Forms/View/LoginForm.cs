@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using TheUniversity.Services;
 using TheUniversity.Configs;
 using TheUniversity.Forms;
+using TheUniversity.Forms.View;
 
 namespace TheUniversity
 {
@@ -62,10 +63,9 @@ namespace TheUniversity
 
                 if (viewForm != null)
                 {
+                    this.Hide();
+                    viewForm.ShowDialog();
                     this.Close();
-                    openFormThread = new Thread(() => OpenViewForm(viewForm));
-                    openFormThread.SetApartmentState(ApartmentState.STA);
-                    openFormThread.Start();
                 }
             }
             else

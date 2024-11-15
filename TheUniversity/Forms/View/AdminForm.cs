@@ -112,11 +112,6 @@ namespace TheUniversity.Forms
             }
         }
 
-        private void BackToLoginForm(object form)
-        {
-            Application.Run(new LoginForm());
-        }
-
         // Вкладка перегляду пар
         private void button1_Click(object sender, EventArgs e)
         {
@@ -524,20 +519,17 @@ namespace TheUniversity.Forms
             Properties.Settings.Default.Username = "";
             Properties.Settings.Default.Password = "";
             Properties.Settings.Default.Save();
+
+            Form loginForm = new LoginForm();
+
+            this.Hide();
+            loginForm.ShowDialog();
             this.Close();
-            openFormThread = new Thread(BackToLoginForm);
-            openFormThread.SetApartmentState(ApartmentState.STA);
-            openFormThread.Start();
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void usersActionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("It is must work!!!");
         }
     }
 }

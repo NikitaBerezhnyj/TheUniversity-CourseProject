@@ -204,10 +204,12 @@ namespace TheUniversity.Forms
             Properties.Settings.Default.Username = "";
             Properties.Settings.Default.Password = "";
             Properties.Settings.Default.Save();
+
+            Form loginForm = new LoginForm();
+
+            this.Hide();
+            loginForm.ShowDialog();
             this.Close();
-            openFormThread = new Thread(BackToLoginForm);
-            openFormThread.SetApartmentState(ApartmentState.STA);
-            openFormThread.Start();
         }
 
         private void закритиToolStripMenuItem_Click(object sender, EventArgs e)

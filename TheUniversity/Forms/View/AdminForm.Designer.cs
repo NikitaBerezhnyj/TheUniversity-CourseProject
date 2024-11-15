@@ -120,7 +120,6 @@
             usersActionsToolStripMenuItem.Name = "usersActionsToolStripMenuItem";
             usersActionsToolStripMenuItem.Size = new Size(180, 22);
             usersActionsToolStripMenuItem.Text = "Користувачі";
-            usersActionsToolStripMenuItem.Click += usersActionsToolStripMenuItem_Click;
             // 
             // addUserToolStripMenuItem
             // 
