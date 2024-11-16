@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using TheUniversity.Forms.Action.Teacher;
 using TheUniversity.Forms.Action.Subject;
 using TheUniversity.Forms.Action.Lesson;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace TheUniversity.Forms
 {
@@ -510,6 +512,384 @@ namespace TheUniversity.Forms
             else
             {
                 MessageBox.Show("Будь ласка, оберіть користувача для видалення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Експортування таблиць в pdf
+        private void exportUserTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView4.Rows.Count > 0)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "PDF (*.pdf)|*.pdf",
+                    FileName = "Користувачі"
+                };
+                bool errorMessage = false;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(saveFileDialog.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(saveFileDialog.FileName);
+                        }
+                        catch
+                        {
+                            errorMessage = true;
+                            MessageBox.Show($"Неможливо записати дані на диск: {saveFileDialog.FileName}", "Помилка");
+                        }
+                    }
+
+                    if (!errorMessage)
+                    {
+                        try
+                        {
+                            string ttf = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIAL.TTF");
+                            BaseFont baseFont = BaseFont.CreateFont(ttf, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                            iTextSharp.text.Font arialFont = new iTextSharp.text.Font(baseFont, 10);
+
+                            var excludedColumns = new HashSet<string> { "ID" };
+
+                            var visibleColumns = dataGridView4.Columns.Cast<DataGridViewColumn>()
+                                .Where(col => !excludedColumns.Contains(col.Name))
+                                .ToList();
+
+                            PdfPTable pTable = new PdfPTable(visibleColumns.Count)
+                            {
+                                DefaultCell = { Padding = 4 },
+                                WidthPercentage = 100,
+                                HorizontalAlignment = Element.ALIGN_LEFT
+                            };
+
+                            foreach (var col in visibleColumns)
+                            {
+                                PdfPCell pCell = new PdfPCell(new Phrase(col.HeaderText, arialFont))
+                                {
+                                    HorizontalAlignment = Element.ALIGN_CENTER
+                                };
+                                pTable.AddCell(pCell);
+                            }
+
+                            foreach (DataGridViewRow row in dataGridView4.Rows)
+                            {
+                                foreach (var col in visibleColumns)
+                                {
+                                    var cell = row.Cells[col.Index];
+                                    string cellValue = cell.Value?.ToString() ?? string.Empty;
+                                    pTable.AddCell(new Phrase(cellValue, arialFont));
+                                }
+                            }
+
+                            using (FileStream fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                            {
+                                Document document = new Document(PageSize.A4, 8f, 16f, 16f, 8f);
+                                PdfWriter writer = PdfWriter.GetInstance(document, fileStream);
+                                document.Open();
+
+                                Paragraph title = new Paragraph("Таблиця Користувачі з TheUniversity", new iTextSharp.text.Font(baseFont, 20))
+                                {
+                                    Alignment = Element.ALIGN_CENTER
+                                };
+                                document.Add(title);
+                                document.Add(new Phrase("\n"));
+
+
+                                document.Add(pTable);
+                                document.Close();
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Помилка при отриманні даних з таблиці", "Помилка");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Записів не знайдено", "Помилка");
+            }
+        }
+
+        private void exportLessonTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF (*.pdf)|*.pdf";
+                saveFileDialog.FileName = "Пари";
+                bool errorMessage = false;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(saveFileDialog.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(saveFileDialog.FileName);
+                        }
+                        catch
+                        {
+                            errorMessage = true;
+                            MessageBox.Show($"Неможливо записати дані на диск: {saveFileDialog.FileName}", "Помилка");
+                        }
+                    }
+
+                    if (!errorMessage)
+                    {
+                        try
+                        {
+                            string ttf = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIAL.TTF");
+                            BaseFont baseFont = BaseFont.CreateFont(ttf, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                            iTextSharp.text.Font arialFont = new iTextSharp.text.Font(baseFont, 10);
+
+                            var excludedColumns = new HashSet<string> { "id", "teacher_id", "subject_id" };
+                            var visibleColumns = dataGridView1.Columns.Cast<DataGridViewColumn>()
+                                .Where(col => !excludedColumns.Contains(col.Name))
+                                .ToList();
+
+                            PdfPTable pTable = new PdfPTable(visibleColumns.Count);
+                            pTable.DefaultCell.Padding = 4;
+                            pTable.WidthPercentage = 100;
+                            pTable.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                            foreach (var col in visibleColumns)
+                            {
+                                PdfPCell pCell = new PdfPCell(new Phrase(col.HeaderText, arialFont));
+                                pCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                                pTable.AddCell(pCell);
+                            }
+                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            {
+                                foreach (var col in visibleColumns)
+                                {
+                                    var cell = row.Cells[col.Index];
+                                    string cellValue;
+
+                                    if (cell.Value is DateTime dateTimeValue)
+                                    {
+                                        cellValue = dateTimeValue.ToString("dd.MM.yyyy");
+                                    }
+                                    else
+                                    {
+                                        cellValue = cell.Value?.ToString() ?? string.Empty;
+                                    }
+
+                                    pTable.AddCell(new Phrase(cellValue, arialFont));
+                                }
+                            }
+
+
+                            using (FileStream fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                            {
+                                Document document = new Document(PageSize.A4, 8f, 16f, 16f, 8f);
+                                PdfWriter writer = PdfWriter.GetInstance(document, fileStream);
+                                document.Open();
+
+                                Paragraph title = new Paragraph("Таблиця Пари з TheUniversity", new iTextSharp.text.Font(baseFont, 20));
+                                title.Alignment = Element.ALIGN_CENTER;
+                                document.Add(title);
+                                document.Add(new Phrase("\n"));
+
+                                document.Add(pTable);
+                                document.Close();
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Помилка при отриманні даних з таблиці", "Помилка");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Записів не знайдено", "Помилка");
+            }
+        }
+
+        private void exportSubjectTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.Rows.Count > 0)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF (*.pdf)|*.pdf";
+                saveFileDialog.FileName = "Предмети";
+                bool errorMessage = false;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(saveFileDialog.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(saveFileDialog.FileName);
+                        }
+                        catch
+                        {
+                            errorMessage = true;
+                            MessageBox.Show($"Неможливо записати дані на диск: {saveFileDialog.FileName}", "Помилка");
+                        }
+                    }
+
+                    if (!errorMessage)
+                    {
+                        try
+                        {
+                            string ttf = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIAL.TTF");
+                            BaseFont baseFont = BaseFont.CreateFont(ttf, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                            iTextSharp.text.Font arialFont = new iTextSharp.text.Font(baseFont, 10);
+
+                            var excludedColumns = new HashSet<string> { "id" };
+                            var visibleColumns = dataGridView2.Columns.Cast<DataGridViewColumn>()
+                                .Where(col => !excludedColumns.Contains(col.Name))
+                                .ToList();
+
+                            PdfPTable pTable = new PdfPTable(visibleColumns.Count);
+                            pTable.DefaultCell.Padding = 4;
+                            pTable.WidthPercentage = 100;
+                            pTable.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                            foreach (var col in visibleColumns)
+                            {
+                                PdfPCell pCell = new PdfPCell(new Phrase(col.HeaderText, arialFont));
+                                pCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                                pTable.AddCell(pCell);
+                            }
+
+                            foreach (DataGridViewRow row in dataGridView2.Rows)
+                            {
+                                foreach (var col in visibleColumns)
+                                {
+                                    var cell = row.Cells[col.Index];
+                                    string cellValue;
+
+                                    if (cell.Value is bool boolValue)
+                                    {
+                                        cellValue = boolValue ? "Обов'язковий" : "Не обов'язковий";
+                                    }
+                                    else
+                                    {
+                                        cellValue = cell.Value?.ToString() ?? string.Empty;
+                                    }
+
+                                    pTable.AddCell(new Phrase(cellValue, arialFont));
+                                }
+                            }
+
+                            using (FileStream fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                            {
+                                Document document = new Document(PageSize.A4, 8f, 16f, 16f, 8f);
+                                PdfWriter writer = PdfWriter.GetInstance(document, fileStream);
+                                document.Open();
+
+                                Paragraph title = new Paragraph("Таблиця Предмети з TheUniversity", new iTextSharp.text.Font(baseFont, 20));
+                                title.Alignment = Element.ALIGN_CENTER;
+                                document.Add(title);
+                                document.Add(new Phrase("\n"));
+
+                                document.Add(pTable);
+                                document.Close();
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Помилка при отриманні даних з таблиці", "Помилка");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Записів не знайдено", "Помилка");
+            }
+        }
+
+        private void exportTeacherTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.Rows.Count > 0)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF (*.pdf)|*.pdf";
+                saveFileDialog.FileName = "Викладачі";
+                bool errorMessage = false;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(saveFileDialog.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(saveFileDialog.FileName);
+                        }
+                        catch
+                        {
+                            errorMessage = true;
+                            MessageBox.Show($"Неможливо записати дані на диск: {saveFileDialog.FileName}", "Помилка");
+                        }
+                    }
+
+                    if (!errorMessage)
+                    {
+                        try
+                        {
+                            string ttf = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIAL.TTF");
+                            BaseFont baseFont = BaseFont.CreateFont(ttf, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                            iTextSharp.text.Font arialFont = new iTextSharp.text.Font(baseFont, 10);
+
+                            var excludedColumns = new HashSet<string> { "id" };
+                            var visibleColumns = dataGridView3.Columns.Cast<DataGridViewColumn>()
+                                .Where(col => !excludedColumns.Contains(col.Name))
+                                .ToList();
+
+                            PdfPTable pTable = new PdfPTable(visibleColumns.Count);
+                            pTable.DefaultCell.Padding = 4;
+                            pTable.WidthPercentage = 100;
+                            pTable.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                            foreach (var col in visibleColumns)
+                            {
+                                PdfPCell pCell = new PdfPCell(new Phrase(col.HeaderText, arialFont));
+                                pCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                                pTable.AddCell(pCell);
+                            }
+
+                            foreach (DataGridViewRow row in dataGridView3.Rows)
+                            {
+                                foreach (var col in visibleColumns)
+                                {
+                                    string cellValue = row.Cells[col.Index].Value?.ToString() ?? string.Empty;
+                                    pTable.AddCell(new Phrase(cellValue, arialFont));
+                                }
+                            }
+
+                            using (FileStream fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                            {
+                                Document document = new Document(PageSize.A4, 8f, 16f, 16f, 8f);
+                                PdfWriter writer = PdfWriter.GetInstance(document, fileStream);
+                                document.Open();
+
+                                Paragraph title = new Paragraph("Таблиця Викладачі з TheUniversity", new iTextSharp.text.Font(baseFont, 20));
+                                title.Alignment = Element.ALIGN_CENTER;
+                                document.Add(title);
+                                document.Add(new Phrase("\n"));
+
+                                document.Add(pTable);
+                                document.Close();
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Помилка при отриманні даних з таблиці", "Помилка");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Записів не знайдено", "Помилка");
             }
         }
 
