@@ -47,26 +47,10 @@ namespace TheUniversity
                 Properties.Settings.Default.Password = password;
                 Properties.Settings.Default.Save();
 
-                Form viewForm = null;
-                if (role == "admin")
-                {
-                    viewForm = new AdminForm();
-                }
-                else if (role == "teacher")
-                {
-                    viewForm = new TeacherForm();
-                }
-                else if (role == "student")
-                {
-                    viewForm = new StudentForm();
-                }
-
-                if (viewForm != null)
-                {
-                    this.Hide();
-                    viewForm.ShowDialog();
-                    this.Close();
-                }
+                this.Hide();
+                MainForm mainForm = new MainForm(role);
+                mainForm.ShowDialog();
+                this.Close();
             }
             else
             {
