@@ -98,8 +98,37 @@ namespace TheUniversity.Services
             return dataTable;
         }
 
+        public bool IsTeacherUnique(string fullName, int? id = null)
+        {
+            string query = "SELECT COUNT(*) FROM Teacher WHERE full_name = @full_name";
+
+            if (id.HasValue)
+            {
+                query += " AND id != @id";
+            }
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@full_name", fullName);
+
+                if (id.HasValue)
+                {
+                    command.Parameters.AddWithValue("@id", id.Value);
+                }
+
+                int count = (int)command.ExecuteScalar();
+
+                return count == 0;
+            }
+        }
+
+
         public void AddTeacher(string full_name, string position, string department, string academic_degree)
         {
+            if(IsTeacherUnique(full_name))
+            {
+                throw new Exception("Викладач з таким іменем вже існує.");
+            }
             string query = "INSERT INTO Teacher (full_name, position, department, academic_degree) VALUES (@full_name, @position, @department, @academic_degree)";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -114,6 +143,11 @@ namespace TheUniversity.Services
 
         public void EditTeacher(int id, string full_name, string position, string department, string academic_degree)
         {
+            if (IsTeacherUnique(full_name, id))
+            {
+                throw new Exception("Викладач з таким іменем вже існує.");
+            }
+
             string query = "UPDATE Teacher SET full_name = @full_name, position = @position, department = @department, academic_degree = @academic_degree WHERE id = @id";
             using (SqlCommand command = new SqlCommand(query, connection))
             {

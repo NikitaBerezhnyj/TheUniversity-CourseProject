@@ -104,30 +104,17 @@ namespace TheUniversity.Forms.Action.User
             {
                 string username = textBox1.Text;
                 string password = textBox2.Text;
-                string role = comboBox1.Text;
-
-                if (roleColumnMapping.ContainsKey(role))
-                {
-                    role = roleColumnMapping[role];
-                }
-                else
-                {
-                    MessageBox.Show("Невідома роль.");
-                    return;
-                }
+                string role = roleColumnMapping[comboBox1.Text];
 
                 try
                 {
                     userServices.EditUser(userId, username, password, role);
                     DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Помилка при редагуванні користувача: " + ex.Message, "Помилка");
-                }
-                finally
-                {
-                    this.Close();
+                    MessageBox.Show("Помилка при редагуванні користувача: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

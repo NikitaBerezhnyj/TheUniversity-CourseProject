@@ -88,14 +88,11 @@ namespace TheUniversity.Forms.Action.Teacher
                 {
                     teacherServices.AddTeacher(full_name, position, department, academic_degree);
                     DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Помилка при додаванні викладача: " + ex.Message, "Помилка");
-                }
-                finally
-                {
-                    this.Close();
+                    MessageBox.Show("Помилка при додаванні викладача: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

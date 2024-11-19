@@ -56,7 +56,6 @@ namespace TheUniversity.Services
                 connection.Open();
             }
 
-            // Використовуємо оператор LIKE для часткового збігу
             string query = $"SELECT * FROM Users WHERE {searchColumn} LIKE @searchValue";
 
             DataTable dataTable = new DataTable();
@@ -97,8 +96,35 @@ namespace TheUniversity.Services
             return dataTable;
         }
 
+        private bool IsUsernameExists(string username, int? id = null)
+        {
+            string query = "SELECT COUNT(*) FROM Users WHERE username = @username";
+
+            if (id.HasValue)
+            {
+                query += " AND id != @id";
+            }
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@username", username);
+
+                if (id.HasValue)
+                {
+                    command.Parameters.AddWithValue("@id", id.Value);
+                }
+
+                int userCount = (int)command.ExecuteScalar();
+                return userCount > 0;
+            }
+        }
 
         public void AddUser(string username, string password, string role) {
+            if (IsUsernameExists(username))
+            {
+                throw new Exception("Користувач з таким іменем вже існує.");
+            }
+
             string query = "INSERT INTO Users (username, password, role) VALUES (@username, @password, @role)";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -111,6 +137,11 @@ namespace TheUniversity.Services
         }
 
         public void EditUser(int id, string username, string password, string role) {
+            if (IsUsernameExists(username, id))
+            {
+                throw new Exception("Користувач з таким іменем вже існує.");
+            }
+
             string query = "UPDATE Users SET username = @username, password = @password, role = @role WHERE id = @id";
             using (SqlCommand command = new SqlCommand(query, connection))
             {

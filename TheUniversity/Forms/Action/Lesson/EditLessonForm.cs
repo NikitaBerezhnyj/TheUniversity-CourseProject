@@ -78,7 +78,7 @@ namespace TheUniversity.Forms.Action.Lesson
             }
         }
 
-        private bool ValidateEditLessonForm(string subjectName, string subjectControlType, decimal subjectHours, bool subjectMandatory)
+        private bool ValidateEditLessonForm()
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
@@ -153,14 +153,11 @@ namespace TheUniversity.Forms.Action.Lesson
                 {
                     lessonServices.EditLesson(lessonId, room, date, time, lesson_type, group, teacher_id, subject_id);
                     DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Помилка при редагуванні пари: " + ex.Message, "Помилка");
-                }
-                finally
-                {
-                    this.Close();
+                    MessageBox.Show("Помилка при редагуванні пари: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

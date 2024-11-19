@@ -191,9 +191,39 @@ namespace TheUniversity.Services
             return subjectsDictionary;
         }
 
+        public bool IsLessonUnique(int teacher_id, DateTime date, TimeSpan time, int? id = null)
+        {
+            string query = "SELECT COUNT(*) FROM Lesson WHERE teacher_id = @teacher_id AND date = @date AND time = @time";
+
+            if (id.HasValue)
+            {
+                query += " AND id != @id";
+            }
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@teacher_id", teacher_id);
+                command.Parameters.AddWithValue("@date", date);
+                command.Parameters.AddWithValue("@time", time);
+
+                if (id.HasValue)
+                {
+                    command.Parameters.AddWithValue("@id", id.Value);
+                }
+
+                int count = (int)command.ExecuteScalar();
+
+                return count == 0;
+            }
+        }
 
         public void AddLesson(string room, DateTime date, TimeSpan time, string lesson_type, string group, int teacher_id, int subject_id)
         {
+            if (!IsLessonUnique(teacher_id, date, time))
+            {
+                throw new Exception("Цей викладач вже має заняття на зазначену дату і час..");
+            }
+
             string query = "INSERT INTO Lesson (room, date, time, lesson_type, [group], teacher_id, subject_id) " +
                            "VALUES (@room, @date, @time, @lesson_type, @group, @teacher_id, @subject_id)";
             try
@@ -229,9 +259,13 @@ namespace TheUniversity.Services
             }
         }
 
-
         public void EditLesson(int id, string room, DateTime date, TimeSpan time, string lesson_type, string group, int teacher_id, int subject_id)
         {
+            if (!IsLessonUnique(teacher_id, date, time, id))
+            {
+                throw new Exception("Цей викладач вже має заняття на зазначену дату і час..");
+            }
+
             string query = "UPDATE Lesson SET room = @room, date = @date, time = @time, lesson_type = @lesson_type, " +
                            "[group] = @group, teacher_id = @teacher_id, subject_id = @subject_id WHERE id = @id";
             try

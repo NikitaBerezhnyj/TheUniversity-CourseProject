@@ -101,8 +101,37 @@ namespace TheUniversity.Services
             return dataTable;
         }
 
+        public bool IsSubjectUnique(string name, int? id = null)
+        {
+            string query = "SELECT COUNT(*) FROM Subject WHERE name = @name";
+
+            if (id.HasValue)
+            {
+                query += " AND id != @id";
+            }
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@name", name);
+
+                if (id.HasValue)
+                {
+                    command.Parameters.AddWithValue("@id", id.Value);
+                }
+
+                int count = (int)command.ExecuteScalar();
+
+                return count == 0;
+            }
+        }
+
         public void AddSubject(string name, string control_type, bool mandatory, int hours)
         {
+            if (IsSubjectUnique(name))
+            {
+                throw new Exception("Предмет з такою назвою вже існує.");
+            }
+
             string query = "INSERT INTO Subject (name, control_type, mandatory, hours) VALUES (@name, @control_type, @mandatory, @hours)";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -117,6 +146,11 @@ namespace TheUniversity.Services
 
         public void EditSubject(int id, string name, string control_type, bool mandatory, int hours)
         {
+            if (IsSubjectUnique(name, id))
+            {
+                throw new Exception("Предмет з такою назвою вже існує.");
+            }
+
             string query = "UPDATE Subject SET name = @name, control_type = @control_type, mandatory = @mandatory, hours = @hours WHERE id = @id";
             using (SqlCommand command = new SqlCommand(query, connection))
             {

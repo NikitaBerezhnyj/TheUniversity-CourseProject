@@ -68,14 +68,11 @@ namespace TheUniversity.Forms.Action.Subject
             {
                 subjectServices.AddSubject(name, control_type, mandatory, hours);
                 DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Помилка при додаванні викладача: " + ex.Message, "Помилка");
-            }
-            finally
-            {
-                this.Close();
+                MessageBox.Show("Помилка при додаванні предмету: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
