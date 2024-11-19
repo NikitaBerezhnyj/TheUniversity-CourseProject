@@ -106,7 +106,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Аспірант", "Асистент", "Доцент", "Старший викладач", "Професор", "Науковий співробітник", "", "Завідувач кафедри", "", "", "Декан факультету", "", "", "Проректор", "Ректор" });
+            comboBox1.Items.AddRange(new object[] { "Аспірант", "Асистент", "Доцент", "Старший викладач", "Професор", "Науковий співробітник", "Завідувач кафедри", "Декан факультету", "Проректор", "Ректор" });
             comboBox1.Location = new Point(95, 130);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(183, 23);
@@ -115,7 +115,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Інформатики та програмування", "", "Математики", "Фізики", "Права", "Іноземних мов", "", "Історії", "Хімії", "Біології", "Менеджменту та маркетингу" });
+            comboBox2.Items.AddRange(new object[] { "Інформатики та програмування", "Математики", "Фізики", "Права", "Іноземних мов", "Історії", "Хімії", "Біології", "Менеджменту та маркетингу" });
             comboBox2.Location = new Point(95, 174);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(183, 23);
@@ -124,7 +124,7 @@
             // comboBox3
             // 
             comboBox3.FormattingEnabled = true;
-            comboBox3.Items.AddRange(new object[] { "Магістр", "Кандидат наук", "Доктор філософії", "Доктор наук", "", "", "Почесний доктор" });
+            comboBox3.Items.AddRange(new object[] { "Магістр", "Кандидат наук", "Доктор філософії", "Доктор наук", "Почесний доктор" });
             comboBox3.Location = new Point(95, 218);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(183, 23);

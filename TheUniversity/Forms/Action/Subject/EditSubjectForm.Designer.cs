@@ -33,10 +33,10 @@
             checkBox1 = new CheckBox();
             label4 = new Label();
             label2 = new Label();
-            textBox2 = new TextBox();
             label1 = new Label();
             textBox1 = new TextBox();
             numericUpDown1 = new NumericUpDown();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
@@ -88,13 +88,6 @@
             label2.TabIndex = 52;
             label2.Text = "Тип контролю";
             // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(49, 100);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(181, 23);
-            textBox2.TabIndex = 51;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -118,16 +111,25 @@
             numericUpDown1.Size = new Size(181, 23);
             numericUpDown1.TabIndex = 56;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Екзамен", "Залік", "Курсова робота" });
+            comboBox1.Location = new Point(49, 100);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(181, 23);
+            comboBox1.TabIndex = 57;
+            // 
             // EditSubjectForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(384, 361);
+            Controls.Add(comboBox1);
             Controls.Add(numericUpDown1);
             Controls.Add(checkBox1);
             Controls.Add(label4);
             Controls.Add(label2);
-            Controls.Add(textBox2);
             Controls.Add(label1);
             Controls.Add(textBox1);
             Controls.Add(button2);
@@ -145,9 +147,9 @@
         private CheckBox checkBox1;
         private Label label4;
         private Label label2;
-        private TextBox textBox2;
         private Label label1;
         private TextBox textBox1;
         private NumericUpDown numericUpDown1;
+        private ComboBox comboBox1;
     }
 }

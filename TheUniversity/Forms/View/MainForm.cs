@@ -87,7 +87,7 @@ namespace TheUniversity.Forms.View
                 subjectActionsToolStripMenuItem.Enabled = false;
                 teacherActionsToolStripMenuItem.Enabled = false;
                 usersActionsToolStripMenuItem.Enabled = false;
-                exportActionsToolStripMenuItem.Enabled = false;
+                exportUserTableToolStripMenuItem.Enabled = false;
 
                 tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
                 tabControl1.DrawItem += (sender, e) => tabControl1_DrawItem(sender, e, role);
@@ -99,7 +99,7 @@ namespace TheUniversity.Forms.View
                 subjectActionsToolStripMenuItem.Enabled = false;
                 teacherActionsToolStripMenuItem.Enabled = false;
                 usersActionsToolStripMenuItem.Enabled = false;
-                exportUserTableToolStripMenuItem.Enabled = false;
+                exportActionsToolStripMenuItem.Enabled = false;
 
                 tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
                 tabControl1.DrawItem += (sender, e) => tabControl1_DrawItem(sender, e, role);

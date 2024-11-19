@@ -34,34 +34,79 @@ namespace TheUniversity.Forms.Action.User
             userServices = new UserServices(connection);
         }
 
+        private bool ValidateAddUserForm()
+        {
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Ім'я користувача не може бути порожнім.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Пароль не може бути порожнім.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (textBox2.Text.Length < 8)
+            {
+                MessageBox.Show("Пароль повинен бути довший за 8 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            string passwordPattern = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$&*_-]).{8,}$";
+            if (!new System.Text.RegularExpressions.Regex(passwordPattern).IsMatch(textBox2.Text))
+            {
+                MessageBox.Show("Пароль повинен містити великі і маленькі літери, цифри та спеціальні символи.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(comboBox1.Text))
+            {
+                MessageBox.Show("Будь ласка, оберіть роль.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!roleColumnMapping.ContainsKey(comboBox1.Text))
+            {
+                MessageBox.Show("Обрана роль є недійсною.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            string username = textBox1.Text;
-            string password = textBox2.Text;
-            string role = comboBox1.Text;
+            if (ValidateAddUserForm())
+            {
+                string username = textBox1.Text;
+                string password = textBox2.Text;
+                string role = comboBox1.Text;
 
-            if (roleColumnMapping.ContainsKey(role))
-            {
-                role = roleColumnMapping[role];
-            }
-            else
-            {
-                MessageBox.Show("Невідома роль.");
-                return;
-            }
+                if (roleColumnMapping.ContainsKey(role))
+                {
+                    role = roleColumnMapping[role];
+                }
+                else
+                {
+                    MessageBox.Show("Невідома роль.");
+                    return;
+                }
 
-            try
-            {
-                userServices.AddUser(username, password, role);
-                DialogResult = DialogResult.OK;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Помилка при додаванні користувача: " + ex.Message, "Помилка");
-            }
-            finally
-            {
-                this.Close();
+                try
+                {
+                    userServices.AddUser(username, password, role);
+                    DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Помилка при додаванні користувача: " + ex.Message, "Помилка");
+                }
+                finally
+                {
+                    this.Close();
+                }
             }
         }
 

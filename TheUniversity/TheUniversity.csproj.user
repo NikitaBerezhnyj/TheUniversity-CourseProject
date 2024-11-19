@@ -25,19 +25,10 @@
     <Compile Update="Forms\Action\User\EditUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\View\AdminForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Forms\View\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\View\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Forms\View\StudentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Forms\View\TeacherForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

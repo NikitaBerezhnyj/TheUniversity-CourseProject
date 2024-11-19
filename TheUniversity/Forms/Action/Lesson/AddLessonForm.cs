@@ -44,28 +44,78 @@ namespace TheUniversity.Forms.Action.Lesson
             comboBox2.ValueMember = "Key";
         }
 
+        private bool ValidateAddLessonForm()
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Будь ласка, введіть номер аудиторії.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Будь ласка, оберіть викладача.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (comboBox2.SelectedItem == null)
+            {
+                MessageBox.Show("Будь ласка, оберіть предмет.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(comboBox3.Text) || !new List<string> { "Лекція", "Практика", "Лабораторна робота", "Семінар", "Консультації", "Індивідуальне заняття" }.Contains(comboBox3.Text))
+            {
+                MessageBox.Show("Будь ласка, виберіть коректний тип заняття.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Будь ласка, введіть групу.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (dateTimePicker1.Value < DateTime.Now)
+            {
+                MessageBox.Show("Дата заняття не може бути в минулому.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (dateTimePicker2.Value.TimeOfDay == TimeSpan.Zero)
+            {
+                MessageBox.Show("Будь ласка, виберіть час заняття.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            string room = textBox1.Text;
-            DateTime date = dateTimePicker1.Value;
-            TimeSpan time = dateTimePicker2.Value.TimeOfDay;
-            string lesson_type = comboBox3.Text;
-            string group = textBox2.Text;
-            int teacher_id = (int)((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
-            int subject_id = (int)((KeyValuePair<int, string>)comboBox2.SelectedItem).Key;
+            if (ValidateAddLessonForm())
+            {
+                string room = textBox1.Text;
+                DateTime date = dateTimePicker1.Value;
+                TimeSpan time = dateTimePicker2.Value.TimeOfDay;
+                string lesson_type = comboBox3.Text;
+                string group = textBox2.Text;
+                int teacher_id = (int)((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
+                int subject_id = (int)((KeyValuePair<int, string>)comboBox2.SelectedItem).Key;
 
-            try
-            {
-                lessonServices.AddLesson(room, date, time, lesson_type, group, teacher_id, subject_id);
-                DialogResult = DialogResult.OK;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Помилка при редагуванні пари: " + ex.Message, "Помилка");
-            }
-            finally
-            {
-                this.Close();
+                try
+                {
+                    lessonServices.AddLesson(room, date, time, lesson_type, group, teacher_id, subject_id);
+                    DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Помилка при редагуванні пари: " + ex.Message, "Помилка");
+                }
+                finally
+                {
+                    this.Close();
+                }
             }
         }
 

@@ -13,6 +13,7 @@ using TheUniversity.Configs;
 using TheUniversity.Services;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace TheUniversity.Forms.Action.Lesson
 {
@@ -21,7 +22,16 @@ namespace TheUniversity.Forms.Action.Lesson
         private SqlConnection connection;
         private LessonServices lessonServices;
 
-        private int userId;
+        private int lessonId;
+        private string lessonRoom;
+        private DateTime lessonDate;
+        private TimeSpan lessonTime;
+        private string lessonType;
+        private string lessonGroup;
+        private int lessonTeacherId;
+        private int lessonSubjectId;
+
+
         Dictionary<int, string> teachersDictionary;
         Dictionary<int, string> subjectssDictionary;
 
@@ -29,7 +39,14 @@ namespace TheUniversity.Forms.Action.Lesson
         {
             InitializeComponent();
 
-            userId = id;
+            lessonId = id;
+            lessonRoom = room;
+            lessonDate = date;
+            lessonTime = time;
+            lessonType = lesson_type;
+            lessonGroup = group;
+            lessonTeacherId = teacher_id;
+            lessonSubjectId = subject_id;
 
             var dbConfig = new DatabaseConfig();
             connection = dbConfig.OpenConnection();
@@ -61,28 +78,90 @@ namespace TheUniversity.Forms.Action.Lesson
             }
         }
 
+        private bool ValidateEditLessonForm(string subjectName, string subjectControlType, decimal subjectHours, bool subjectMandatory)
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Будь ласка, введіть номер аудиторії.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Будь ласка, оберіть викладача.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (comboBox2.SelectedItem == null)
+            {
+                MessageBox.Show("Будь ласка, оберіть предмет.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(comboBox3.Text) || !new List<string> { "Лекція", "Практика", "Лабораторна робота", "Семінар", "Консультації", "Індивідуальне заняття" }.Contains(comboBox3.Text))
+            {
+                MessageBox.Show("Будь ласка, виберіть коректний тип заняття.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Будь ласка, введіть групу.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (dateTimePicker1.Value < DateTime.Now)
+            {
+                MessageBox.Show("Дата заняття не може бути в минулому.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (dateTimePicker2.Value.TimeOfDay == TimeSpan.Zero)
+            {
+                MessageBox.Show("Будь ласка, виберіть час заняття.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (textBox1.Text == lessonRoom &&
+                comboBox3.Text == lessonType &&
+                textBox2.Text == lessonGroup &&
+                dateTimePicker1.Value == lessonDate &&
+                dateTimePicker2.Value.TimeOfDay.Hours == lessonTime.Hours &&
+                dateTimePicker2.Value.TimeOfDay.Minutes == lessonTime.Minutes &&
+                (int)((KeyValuePair<int, string>)comboBox1.SelectedItem).Key == lessonTeacherId &&
+                (int)((KeyValuePair<int, string>)comboBox2.SelectedItem).Key == lessonSubjectId)
+            {
+                MessageBox.Show("Ви не змінили жодного з полів. Зміни не потрібні.", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            return true;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            string room = textBox1.Text;
-            DateTime date = dateTimePicker1.Value;
-            TimeSpan time = dateTimePicker2.Value.TimeOfDay;
-            string lesson_type = comboBox3.Text;
-            string group = textBox2.Text;
-            int teacher_id = (int)((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
-            int subject_id = (int)((KeyValuePair<int, string>)comboBox2.SelectedItem).Key;
+            if (ValidateEditLessonForm())
+            {
+                string room = textBox1.Text;
+                DateTime date = dateTimePicker1.Value;
+                TimeSpan time = dateTimePicker2.Value.TimeOfDay;
+                string lesson_type = comboBox3.Text;
+                string group = textBox2.Text;
+                int teacher_id = (int)((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
+                int subject_id = (int)((KeyValuePair<int, string>)comboBox2.SelectedItem).Key;
 
-            try
-            {
-                lessonServices.EditLesson(userId, room, date, time, lesson_type, group, teacher_id, subject_id);
-                DialogResult = DialogResult.OK;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Помилка при редагуванні пари: " + ex.Message, "Помилка");
-            }
-            finally
-            {
-                this.Close();
+                try
+                {
+                    lessonServices.EditLesson(lessonId, room, date, time, lesson_type, group, teacher_id, subject_id);
+                    DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Помилка при редагуванні пари: " + ex.Message, "Помилка");
+                }
+                finally
+                {
+                    this.Close();
+                }
             }
         }
 

@@ -57,6 +57,5 @@ namespace TheUniversity
                 MessageBox.Show("Неправильно введене ім'я або пароль");
             }
         }
-
     }
 }
