@@ -240,6 +240,10 @@ namespace TheUniversity.Forms.View
             {
                 dataGridView4.DataSource = users;
                 dataGridView4.Columns["id"].Visible = false;
+
+                dataGridView4.Columns["Ім'я"].DisplayIndex = 0;
+                dataGridView4.Columns["Пароль"].DisplayIndex = 1;
+                dataGridView4.Columns["Роль в системі"].DisplayIndex = 2;
             }
         }
 
@@ -266,6 +270,14 @@ namespace TheUniversity.Forms.View
                 dataGridView1.Columns["id"].Visible = false;
                 dataGridView1.Columns["teacher_id"].Visible = false;
                 dataGridView1.Columns["subject_id"].Visible = false;
+
+                dataGridView1.Columns["Дата"].DisplayIndex = 0;
+                dataGridView1.Columns["Час"].DisplayIndex = 1;
+                dataGridView1.Columns["Аудиторія"].DisplayIndex = 2;
+                dataGridView1.Columns["Тип заняття"].DisplayIndex = 3;
+                dataGridView1.Columns["Група"].DisplayIndex = 4;
+                dataGridView1.Columns["Викладач"].DisplayIndex = 5;
+                dataGridView1.Columns["Предмет"].DisplayIndex = 6;
             }
             else
             {
@@ -301,6 +313,11 @@ namespace TheUniversity.Forms.View
             {
                 dataGridView2.DataSource = subjects;
                 dataGridView2.Columns["id"].Visible = false;
+
+                dataGridView2.Columns["Назва"].DisplayIndex = 0;
+                dataGridView2.Columns["Тип контролю"].DisplayIndex = 1;
+                dataGridView2.Columns["Кількість годин"].DisplayIndex = 2;
+                dataGridView2.Columns["Обов'язковість"].DisplayIndex = 3;
             }
             else
             {
@@ -336,6 +353,11 @@ namespace TheUniversity.Forms.View
             {
                 dataGridView3.DataSource = teachers;
                 dataGridView3.Columns["id"].Visible = false;
+
+                dataGridView3.Columns["ПІП"].DisplayIndex = 0;
+                dataGridView3.Columns["Посада"].DisplayIndex = 1;
+                dataGridView3.Columns["Кафедра"].DisplayIndex = 2;
+                dataGridView3.Columns["Вчений ступінь"].DisplayIndex = 3;
             }
             else
             {
@@ -371,6 +393,10 @@ namespace TheUniversity.Forms.View
             {
                 dataGridView4.DataSource = users;
                 dataGridView4.Columns["id"].Visible = false;
+
+                dataGridView4.Columns["Ім'я"].DisplayIndex = 0;
+                dataGridView4.Columns["Пароль"].DisplayIndex = 1;
+                dataGridView4.Columns["Роль в системі"].DisplayIndex = 2;
             }
             else
             {
