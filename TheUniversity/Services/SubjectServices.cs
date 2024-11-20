@@ -127,7 +127,7 @@ namespace TheUniversity.Services
 
         public void AddSubject(string name, string control_type, bool mandatory, int hours)
         {
-            if (IsSubjectUnique(name))
+            if (!IsSubjectUnique(name))
             {
                 throw new Exception("Предмет з такою назвою вже існує.");
             }
@@ -146,7 +146,7 @@ namespace TheUniversity.Services
 
         public void EditSubject(int id, string name, string control_type, bool mandatory, int hours)
         {
-            if (IsSubjectUnique(name, id))
+            if (!IsSubjectUnique(name, id))
             {
                 throw new Exception("Предмет з такою назвою вже існує.");
             }

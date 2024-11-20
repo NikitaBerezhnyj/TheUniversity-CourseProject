@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.Text;
 
 namespace TheUniversity.Services
 {
@@ -31,7 +32,7 @@ namespace TheUniversity.Services
                     string storedPassword = reader.GetString(0);
                     role = reader.GetString(1);
 
-                    if (storedPassword == password)
+                    if (password == storedPassword)
                     {
                         return true;
                     }

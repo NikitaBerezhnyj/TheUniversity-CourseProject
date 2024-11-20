@@ -221,7 +221,7 @@ namespace TheUniversity.Services
         {
             if (!IsLessonUnique(teacher_id, date, time))
             {
-                throw new Exception("Цей викладач вже має заняття на зазначену дату і час..");
+                throw new Exception("Цей викладач вже має заняття на зазначену дату і час.");
             }
 
             string query = "INSERT INTO Lesson (room, date, time, lesson_type, [group], teacher_id, subject_id) " +
@@ -263,7 +263,7 @@ namespace TheUniversity.Services
         {
             if (!IsLessonUnique(teacher_id, date, time, id))
             {
-                throw new Exception("Цей викладач вже має заняття на зазначену дату і час..");
+                throw new Exception("Цей викладач вже має заняття на зазначену дату і час.");
             }
 
             string query = "UPDATE Lesson SET room = @room, date = @date, time = @time, lesson_type = @lesson_type, " +

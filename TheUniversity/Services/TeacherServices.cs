@@ -122,13 +122,13 @@ namespace TheUniversity.Services
             }
         }
 
-
         public void AddTeacher(string full_name, string position, string department, string academic_degree)
         {
-            if(IsTeacherUnique(full_name))
+            if(!IsTeacherUnique(full_name))
             {
                 throw new Exception("Викладач з таким іменем вже існує.");
             }
+
             string query = "INSERT INTO Teacher (full_name, position, department, academic_degree) VALUES (@full_name, @position, @department, @academic_degree)";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -143,7 +143,7 @@ namespace TheUniversity.Services
 
         public void EditTeacher(int id, string full_name, string position, string department, string academic_degree)
         {
-            if (IsTeacherUnique(full_name, id))
+            if (!IsTeacherUnique(full_name, id))
             {
                 throw new Exception("Викладач з таким іменем вже існує.");
             }

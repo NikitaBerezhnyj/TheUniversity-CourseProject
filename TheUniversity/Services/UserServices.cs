@@ -115,12 +115,12 @@ namespace TheUniversity.Services
                 }
 
                 int userCount = (int)command.ExecuteScalar();
-                return userCount > 0;
+                return userCount == 0;
             }
         }
 
         public void AddUser(string username, string password, string role) {
-            if (IsUsernameExists(username))
+            if (!IsUsernameExists(username))
             {
                 throw new Exception("Користувач з таким іменем вже існує.");
             }
@@ -137,7 +137,7 @@ namespace TheUniversity.Services
         }
 
         public void EditUser(int id, string username, string password, string role) {
-            if (IsUsernameExists(username, id))
+            if (!IsUsernameExists(username, id))
             {
                 throw new Exception("Користувач з таким іменем вже існує.");
             }

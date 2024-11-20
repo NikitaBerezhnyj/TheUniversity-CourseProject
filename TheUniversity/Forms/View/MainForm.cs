@@ -370,74 +370,11 @@ namespace TheUniversity.Forms.View
         }
 
         // Верхня панель
-        // Взаємодія з користувачами
-        private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddUserForm addUserForm = new AddUserForm();
-            if (addUserForm.ShowDialog() == DialogResult.OK)
-            {
-                LoadUsers();
-            }
-        }
-
-        private void editUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (dataGridView4.SelectedRows.Count > 0)
-            {
-                if (int.TryParse(dataGridView4.SelectedRows[0].Cells["id"].Value.ToString(), out int selectedUserId))
-                {
-                    string selectedUsername = Convert.ToString(dataGridView4.SelectedRows[0].Cells["Ім'я"].Value);
-                    string selectedUserPassword = Convert.ToString(dataGridView4.SelectedRows[0].Cells["Пароль"].Value);
-                    string selectedUserRole = Convert.ToString(dataGridView4.SelectedRows[0].Cells["Роль в системі"].Value);
-
-                    EditUserForm editUserForm = new EditUserForm(selectedUserId, selectedUsername, selectedUserPassword, selectedUserRole);
-                    if (editUserForm.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadUsers();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Помилка зчитування ID користувача.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Будь ласка, оберіть користувача для редагування.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void removeUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (dataGridView4.SelectedRows.Count > 0)
-            {
-                int selectedUserId = Convert.ToInt32(dataGridView4.SelectedRows[0].Cells["id"].Value);
-                var result = MessageBox.Show("Ви впевнені, що хочете видалити цього користувача?", "Підтвердження видалення", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-
-                if (result == DialogResult.OK)
-                {
-                    try
-                    {
-                        userServices.RemoveUser(selectedUserId);
-                        LoadUsers();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Помилка при видаленні користувача: " + ex.Message, "Помилка");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Будь ласка, оберіть користувача для видалення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         // Взаємодія з парами
         private void addLessonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddLessonForm addLessonForm = new AddLessonForm();
-            if (addLessonForm.ShowDialog() == DialogResult.OK)
+            ManageLessonForm manageLessonForm = new ManageLessonForm();
+            if (manageLessonForm.ShowDialog() == DialogResult.OK)
             {
                 LoadLessons();
             }
@@ -457,8 +394,8 @@ namespace TheUniversity.Forms.View
                     int selectedTeacherId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["teacher_id"].Value);
                     int selectedSubjectId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["subject_id"].Value);
 
-                    EditLessonForm editLessonForm = new EditLessonForm(selectedId, selectedRoom, selectedDate, selectedTime, selectedLessonType, selectedGroup, selectedTeacherId, selectedSubjectId);
-                    if (editLessonForm.ShowDialog() == DialogResult.OK)
+                    ManageLessonForm manageLessonForm = new ManageLessonForm(selectedId, selectedRoom, selectedDate, selectedTime, selectedLessonType, selectedGroup, selectedTeacherId, selectedSubjectId);
+                    if (manageLessonForm.ShowDialog() == DialogResult.OK)
                     {
                         LoadLessons();
                     }
@@ -503,8 +440,8 @@ namespace TheUniversity.Forms.View
         // Взаємодія з предметами
         private void addSubjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddSubjectForm addSubjectForm = new AddSubjectForm();
-            if (addSubjectForm.ShowDialog() == DialogResult.OK)
+            ManageSubjectForm manageSubjectForm = new ManageSubjectForm();
+            if (manageSubjectForm.ShowDialog() == DialogResult.OK)
             {
                 LoadSubject();
             }
@@ -521,8 +458,8 @@ namespace TheUniversity.Forms.View
                     bool selectedMandatory = Convert.ToBoolean(dataGridView2.SelectedRows[0].Cells["Обов'язковість"].Value);
                     int selectedHours = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["Кількість годин"].Value);
 
-                    EditSubjectForm editSubjectForm = new EditSubjectForm(selectedId, selectedName, selectedControlType, selectedMandatory, selectedHours);
-                    if (editSubjectForm.ShowDialog() == DialogResult.OK)
+                    ManageSubjectForm manageSubjectForm = new ManageSubjectForm(selectedId, selectedName, selectedControlType, selectedMandatory, selectedHours);
+                    if (manageSubjectForm.ShowDialog() == DialogResult.OK)
                     {
                         LoadSubject();
                     }
@@ -567,8 +504,8 @@ namespace TheUniversity.Forms.View
         // Взаємодія з викладачами
         private void addTeacherToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddTeacherForm addTeacherForm = new AddTeacherForm();
-            if (addTeacherForm.ShowDialog() == DialogResult.OK)
+            ManageTeacherForm manageTeacherForm = new ManageTeacherForm();
+            if (manageTeacherForm.ShowDialog() == DialogResult.OK)
             {
                 LoadTeachers();
             }
@@ -585,8 +522,8 @@ namespace TheUniversity.Forms.View
                     string selectedDepartment = Convert.ToString(dataGridView3.SelectedRows[0].Cells["Кафедра"].Value);
                     string selectedAcademicDegree = Convert.ToString(dataGridView3.SelectedRows[0].Cells["Вчений ступінь"].Value);
 
-                    EditTeacherForm editTeacherForm = new EditTeacherForm(selectedUserId, selectedFullName, selectedPosition, selectedDepartment, selectedAcademicDegree);
-                    if (editTeacherForm.ShowDialog() == DialogResult.OK)
+                    ManageTeacherForm manageTeacherForm = new ManageTeacherForm(selectedUserId, selectedFullName, selectedPosition, selectedDepartment, selectedAcademicDegree);
+                    if (manageTeacherForm.ShowDialog() == DialogResult.OK)
                     {
                         LoadTeachers();
                     }
@@ -615,6 +552,69 @@ namespace TheUniversity.Forms.View
                     {
                         teacherServices.RemoveTeacher(selectedUserId);
                         LoadTeachers();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Помилка при видаленні користувача: " + ex.Message, "Помилка");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть користувача для видалення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Взаємодія з користувачами
+        private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageUserForm manageUserForm = new ManageUserForm();
+            if (manageUserForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadUsers();
+            }
+        }
+
+        private void editUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView4.SelectedRows.Count > 0)
+            {
+                if (int.TryParse(dataGridView4.SelectedRows[0].Cells["id"].Value.ToString(), out int selectedUserId))
+                {
+                    string selectedUsername = Convert.ToString(dataGridView4.SelectedRows[0].Cells["Ім'я"].Value);
+                    string selectedUserPassword = Convert.ToString(dataGridView4.SelectedRows[0].Cells["Пароль"].Value);
+                    string selectedUserRole = Convert.ToString(dataGridView4.SelectedRows[0].Cells["Роль в системі"].Value);
+
+                    ManageUserForm manageUserForm = new ManageUserForm(selectedUserId, selectedUsername, selectedUserPassword, selectedUserRole);
+                    if (manageUserForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadUsers();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Помилка зчитування ID користувача.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть користувача для редагування.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void removeUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView4.SelectedRows.Count > 0)
+            {
+                int selectedUserId = Convert.ToInt32(dataGridView4.SelectedRows[0].Cells["id"].Value);
+                var result = MessageBox.Show("Ви впевнені, що хочете видалити цього користувача?", "Підтвердження видалення", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.OK)
+                {
+                    try
+                    {
+                        userServices.RemoveUser(selectedUserId);
+                        LoadUsers();
                     }
                     catch (Exception ex)
                     {
