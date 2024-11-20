@@ -22,7 +22,7 @@ using System.Drawing.Drawing2D;
 namespace TheUniversity.Forms.View
 {
     public partial class MainForm : Form
-    {
+    { 
         private LessonServices lessonServices;
         private SubjectServices subjectServices;
         private TeacherServices teacherServices;
@@ -93,7 +93,7 @@ namespace TheUniversity.Forms.View
                 tabControl1.DrawItem += (sender, e) => tabControl1_DrawItem(sender, e, role);
                 tabControl1.Selecting += tabControl1_Selecting;
             }
-            else
+            else if (role == "guest")
             {
                 lessonActionsToolStripMenuItem.Enabled = false;
                 subjectActionsToolStripMenuItem.Enabled = false;
@@ -104,13 +104,11 @@ namespace TheUniversity.Forms.View
                 tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
                 tabControl1.DrawItem += (sender, e) => tabControl1_DrawItem(sender, e, role);
                 tabControl1.Selecting += tabControl1_Selecting;
-
-                MessageBox.Show(
-                    "Ви увійшли до системи з обмеженими правами доступу. Деякі дії можуть бути недоступні. Спробуйте перезайти, щоб отримати повний доступ відповідно до вашої ролі.",
-                    "Обмежений доступ",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+            }
+            else
+            {
+                MessageBox.Show("Ви ввійшли з незнайомою роллю. Через це програма не може продовжити свою роботу.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
             }
 
             var dbConfig = new DatabaseConfig();
@@ -194,6 +192,14 @@ namespace TheUniversity.Forms.View
                 dataGridView1.Columns["id"].Visible = false;
                 dataGridView1.Columns["teacher_id"].Visible = false;
                 dataGridView1.Columns["subject_id"].Visible = false;
+
+                dataGridView1.Columns["Дата"].DisplayIndex = 0;
+                dataGridView1.Columns["Час"].DisplayIndex = 1;
+                dataGridView1.Columns["Аудиторія"].DisplayIndex = 2;
+                dataGridView1.Columns["Тип заняття"].DisplayIndex = 3;
+                dataGridView1.Columns["Група"].DisplayIndex = 4;
+                dataGridView1.Columns["Викладач"].DisplayIndex = 5;
+                dataGridView1.Columns["Предмет"].DisplayIndex = 6;
             }
         }
 
@@ -204,6 +210,11 @@ namespace TheUniversity.Forms.View
             {
                 dataGridView2.DataSource = subjects;
                 dataGridView2.Columns["id"].Visible = false;
+
+                dataGridView2.Columns["Назва"].DisplayIndex = 0;
+                dataGridView2.Columns["Тип контролю"].DisplayIndex = 1;
+                dataGridView2.Columns["Кількість годин"].DisplayIndex = 2;
+                dataGridView2.Columns["Обов'язковість"].DisplayIndex = 3;
             }
         }
 
@@ -214,6 +225,11 @@ namespace TheUniversity.Forms.View
             {
                 dataGridView3.DataSource = teachers;
                 dataGridView3.Columns["id"].Visible = false;
+
+                dataGridView3.Columns["ПІП"].DisplayIndex = 0;
+                dataGridView3.Columns["Посада"].DisplayIndex = 1;
+                dataGridView3.Columns["Кафедра"].DisplayIndex = 2;
+                dataGridView3.Columns["Вчений ступінь"].DisplayIndex = 3;
             }
         }
 

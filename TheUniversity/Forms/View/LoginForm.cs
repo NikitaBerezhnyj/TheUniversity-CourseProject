@@ -4,6 +4,7 @@ using TheUniversity.Services;
 using TheUniversity.Configs;
 using TheUniversity.Forms;
 using TheUniversity.Forms.View;
+using System.Data;
 
 namespace TheUniversity
 {
@@ -56,6 +57,14 @@ namespace TheUniversity
             {
                 MessageBox.Show("Неправильно введене ім'я або пароль");
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            MainForm mainForm = new MainForm("guest");
+            mainForm.ShowDialog();
+            this.Close();
         }
     }
 }

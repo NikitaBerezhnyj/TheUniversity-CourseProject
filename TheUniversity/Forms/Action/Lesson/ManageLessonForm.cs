@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using TheUniversity.Configs;
 using TheUniversity.Services;
 
-namespace TheUniversity.Forms.Action.Subject
+namespace TheUniversity.Forms.Action.Lesson
 {
     public partial class ManageLessonForm : Form
     {

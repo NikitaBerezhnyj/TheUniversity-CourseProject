@@ -1,4 +1,4 @@
-﻿namespace TheUniversity.Forms.Action.Subject
+﻿namespace TheUniversity.Forms.Action.Lesson
 {
     partial class ManageLessonForm
     {

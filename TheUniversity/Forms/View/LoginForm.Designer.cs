@@ -36,6 +36,7 @@ namespace TheUniversity
             textBox2 = new TextBox();
             label3 = new Label();
             panel1 = new Panel();
+            linkLabel1 = new LinkLabel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -92,6 +93,7 @@ namespace TheUniversity
             // 
             // panel1
             // 
+            panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(button1);
@@ -101,6 +103,17 @@ namespace TheUniversity
             panel1.Name = "panel1";
             panel1.Size = new Size(488, 334);
             panel1.TabIndex = 6;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(206, 275);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(85, 15);
+            linkLabel1.TabIndex = 5;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Ввійти як гість";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // LoginForm
             // 
@@ -126,5 +139,6 @@ namespace TheUniversity
         private TextBox textBox2;
         private Label label3;
         private Panel panel1;
+        private LinkLabel linkLabel1;
     }
 }
