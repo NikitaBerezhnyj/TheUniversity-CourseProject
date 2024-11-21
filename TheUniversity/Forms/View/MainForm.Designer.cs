@@ -83,6 +83,7 @@
             button8 = new Button();
             comboBox4 = new ComboBox();
             textBox4 = new TextBox();
+            helpToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -98,7 +99,7 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = SystemColors.ControlLight;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { actionsToolStripMenuItem, exitToolStripMenuItem, closeToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { actionsToolStripMenuItem, helpToolStripMenuItem, exitToolStripMenuItem, closeToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -568,6 +569,13 @@
             textBox4.Size = new Size(114, 23);
             textBox4.TabIndex = 18;
             // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(75, 20);
+            helpToolStripMenuItem.Text = "Допомога";
+            helpToolStripMenuItem.Click += helpToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -653,5 +661,6 @@
         private Button button8;
         private ComboBox comboBox4;
         private TextBox textBox4;
+        private ToolStripMenuItem helpToolStripMenuItem;
     }
 }

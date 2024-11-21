@@ -22,7 +22,7 @@ using System.Drawing.Drawing2D;
 namespace TheUniversity.Forms.View
 {
     public partial class MainForm : Form
-    { 
+    {
         private LessonServices lessonServices;
         private SubjectServices subjectServices;
         private TeacherServices teacherServices;
@@ -1048,7 +1048,13 @@ namespace TheUniversity.Forms.View
             }
         }
 
-        // Кнопки виходу
+        // Конопки взаємодії з системою
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelpForm helpForm = new HelpForm();
+            helpForm.ShowDialog();
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Username = "";
