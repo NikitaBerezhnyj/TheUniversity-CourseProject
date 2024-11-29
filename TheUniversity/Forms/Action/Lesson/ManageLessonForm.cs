@@ -43,7 +43,7 @@ namespace TheUniversity.Forms.Action.Lesson
             connection = dbConfig.OpenConnection();
             lessonServices = new LessonServices(connection);
 
-            label8.Text = "Додати пари";
+            label8.Text = "Додавання пари";
             button1.Text = "Додати";
 
             teachersDictionary = lessonServices.GetTeacherDictionary();
@@ -77,7 +77,7 @@ namespace TheUniversity.Forms.Action.Lesson
             connection = dbConfig.OpenConnection();
             lessonServices = new LessonServices(connection);
 
-            label8.Text = "Редагувати пари";
+            label8.Text = "Редагування пари";
             textBox1.Text = room;
             dateTimePicker1.Value = date;
             dateTimePicker2.Value = DateTime.Today.Add(time);
@@ -166,11 +166,12 @@ namespace TheUniversity.Forms.Action.Lesson
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(ValidateManageLessonForm())
+            if (ValidateManageLessonForm())
             {
                 string room = textBox1.Text;
                 DateTime date = dateTimePicker1.Value;
-                TimeSpan time = dateTimePicker2.Value.TimeOfDay;
+                //TimeSpan time = dateTimePicker2.Value.TimeOfDay;
+                TimeSpan time = new TimeSpan(dateTimePicker2.Value.Hour, dateTimePicker2.Value.Minute, dateTimePicker2.Value.Second);
                 string lesson_type = comboBox3.Text;
                 string group = textBox2.Text;
                 int teacher_id = (int)((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
@@ -178,6 +179,11 @@ namespace TheUniversity.Forms.Action.Lesson
 
                 try
                 {
+                    if (connection.State != ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
                     if (isEditMode == true)
                     {
                         lessonServices.EditLesson(lessonId, room, date, time, lesson_type, group, teacher_id, subject_id);
@@ -191,7 +197,13 @@ namespace TheUniversity.Forms.Action.Lesson
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Помилка при редагуванні пари: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (isEditMode) {
+                        MessageBox.Show("Помилка при редагуванні пари: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Помилка при додаванні пари: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

@@ -42,7 +42,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(102, 198);
+            label3.Location = new Point(12, 146);
             label3.Name = "label3";
             label3.Size = new Size(88, 15);
             label3.TabIndex = 29;
@@ -51,7 +51,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(102, 146);
+            label2.Location = new Point(12, 102);
             label2.Name = "label2";
             label2.Size = new Size(49, 15);
             label2.TabIndex = 28;
@@ -59,16 +59,16 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(102, 164);
+            textBox2.Location = new Point(12, 120);
             textBox2.Name = "textBox2";
             textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(181, 23);
+            textBox2.Size = new Size(410, 23);
             textBox2.TabIndex = 27;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(102, 93);
+            label1.Location = new Point(12, 58);
             label1.Name = "label1";
             label1.Size = new Size(100, 15);
             label1.TabIndex = 26;
@@ -78,23 +78,23 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Студент", "Викладач", "Адміністратор" });
-            comboBox1.Location = new Point(102, 216);
+            comboBox1.Location = new Point(12, 164);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(181, 23);
+            comboBox1.Size = new Size(410, 23);
             comboBox1.TabIndex = 25;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(102, 111);
+            textBox1.Location = new Point(12, 76);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(181, 23);
+            textBox1.Size = new Size(410, 23);
             textBox1.TabIndex = 24;
             // 
             // button2
             // 
-            button2.Location = new Point(105, 245);
+            button2.Location = new Point(12, 193);
             button2.Name = "button2";
-            button2.Size = new Size(86, 23);
+            button2.Size = new Size(208, 23);
             button2.TabIndex = 23;
             button2.Text = "Відмінити";
             button2.UseVisualStyleBackColor = true;
@@ -102,28 +102,29 @@
             // 
             // button1
             // 
-            button1.Location = new Point(197, 245);
+            button1.Location = new Point(226, 193);
             button1.Name = "button1";
-            button1.Size = new Size(86, 23);
+            button1.Size = new Size(196, 23);
             button1.TabIndex = 22;
-            button1.Text = "Редагувати";
+            button1.Text = "Додати";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(141, 30);
+            label4.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label4.Location = new Point(12, 9);
             label4.Name = "label4";
-            label4.Size = new Size(38, 15);
+            label4.Size = new Size(363, 40);
             label4.TabIndex = 30;
-            label4.Text = "label4";
+            label4.Text = "Додавання користувача";
             // 
             // ManageUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(384, 361);
+            ClientSize = new Size(434, 411);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);

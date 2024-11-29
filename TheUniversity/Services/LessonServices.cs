@@ -248,14 +248,7 @@ namespace TheUniversity.Services
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error while adding lesson: {ex.Message}", "Something went wrong");
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
+                MessageBox.Show($"Помилка при додаванні пари: {ex.Message}", "Щось пішло не так");
             }
         }
 
@@ -292,13 +285,6 @@ namespace TheUniversity.Services
             catch (Exception ex)
             {
                 MessageBox.Show($"Error while editing lesson: {ex.Message}", "Something went wrong");
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
             }
         }
 

@@ -44,6 +44,8 @@ namespace TheUniversity.Forms.Action.User
             var dbConfig = new DatabaseConfig();
             connection = dbConfig.OpenConnection();
             userServices = new UserServices(connection);
+
+            MessageBox.Show(Convert.ToString(connection.State), "Connection state: ");
         }
 
         public ManageUserForm(int id, string username, string password, string role)
@@ -143,7 +145,14 @@ namespace TheUniversity.Forms.Action.User
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Помилка при додаванні користувача: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (isEditMode)
+                    {
+                        MessageBox.Show("Помилка при редагуванні користувача: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Помилка при додаванні користувача: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

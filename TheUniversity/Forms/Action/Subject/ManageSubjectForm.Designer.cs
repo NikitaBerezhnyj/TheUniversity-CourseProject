@@ -45,22 +45,22 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Екзамен", "Залік", "Курсова робота" });
-            comboBox1.Location = new Point(103, 151);
+            comboBox1.Location = new Point(12, 120);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(181, 23);
+            comboBox1.Size = new Size(410, 23);
             comboBox1.TabIndex = 59;
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(101, 195);
+            numericUpDown1.Location = new Point(10, 164);
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(181, 23);
+            numericUpDown1.Size = new Size(410, 23);
             numericUpDown1.TabIndex = 58;
             // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(101, 224);
+            checkBox1.Location = new Point(10, 193);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(108, 19);
             checkBox1.TabIndex = 57;
@@ -70,7 +70,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(101, 177);
+            label4.Location = new Point(10, 146);
             label4.Name = "label4";
             label4.Size = new Size(91, 15);
             label4.TabIndex = 56;
@@ -78,9 +78,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(101, 249);
+            button2.Location = new Point(10, 218);
             button2.Name = "button2";
-            button2.Size = new Size(86, 23);
+            button2.Size = new Size(220, 23);
             button2.TabIndex = 55;
             button2.Text = "Відмінити";
             button2.UseVisualStyleBackColor = true;
@@ -89,7 +89,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(101, 133);
+            label2.Location = new Point(12, 102);
             label2.Name = "label2";
             label2.Size = new Size(86, 15);
             label2.TabIndex = 54;
@@ -98,7 +98,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(103, 89);
+            label1.Location = new Point(12, 58);
             label1.Name = "label1";
             label1.Size = new Size(94, 15);
             label1.TabIndex = 53;
@@ -106,9 +106,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(198, 249);
+            button1.Location = new Point(236, 218);
             button1.Name = "button1";
-            button1.Size = new Size(86, 23);
+            button1.Size = new Size(186, 23);
             button1.TabIndex = 52;
             button1.Text = "Додати";
             button1.UseVisualStyleBackColor = true;
@@ -116,25 +116,27 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(103, 107);
+            textBox1.Location = new Point(12, 76);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(181, 23);
+            textBox1.Size = new Size(410, 23);
             textBox1.TabIndex = 51;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(147, 31);
+            label3.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label3.Location = new Point(12, 9);
             label3.Name = "label3";
-            label3.Size = new Size(38, 15);
+            label3.Size = new Size(322, 40);
             label3.TabIndex = 60;
-            label3.Text = "label3";
+            label3.Text = "Додавання предмету";
+            label3.TextAlign = ContentAlignment.TopCenter;
             // 
             // ManageSubjectForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(384, 361);
+            ClientSize = new Size(434, 411);
             Controls.Add(label3);
             Controls.Add(comboBox1);
             Controls.Add(numericUpDown1);

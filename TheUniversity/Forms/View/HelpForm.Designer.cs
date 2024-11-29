@@ -30,36 +30,49 @@
         {
             label1 = new Label();
             label2 = new Label();
+            panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(308, 23);
+            label1.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(132, 40);
             label1.TabIndex = 0;
-            label1.Text = "label1";
+            label1.Text = "Довідка";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(30, 40);
+            label2.Location = new Point(3, 0);
             label2.Name = "label2";
             label2.Size = new Size(38, 15);
             label2.TabIndex = 1;
             label2.Text = "label2";
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(label2);
+            panel1.Location = new Point(12, 66);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(410, 333);
+            panel1.TabIndex = 2;
+            // 
             // HelpForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(label2);
+            ClientSize = new Size(434, 411);
+            Controls.Add(panel1);
             Controls.Add(label1);
             Name = "HelpForm";
             Text = "HelpForm";
             Load += HelpForm_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -68,5 +81,6 @@
 
         private Label label1;
         private Label label2;
+        private Panel panel1;
     }
 }

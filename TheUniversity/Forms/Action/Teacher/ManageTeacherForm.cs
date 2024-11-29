@@ -33,7 +33,7 @@ namespace TheUniversity.Forms.Action.Teacher
 
             isEditMode = true;
 
-            label5.Text = "Додати викладача";
+            label5.Text = "Додавання викладача";
             button1.Text = "Додати";
 
             var dbConfig = new DatabaseConfig();
@@ -53,7 +53,7 @@ namespace TheUniversity.Forms.Action.Teacher
             teacherDepartment = department;
             teacherAcdemicDegree = academic_degree;
 
-            label5.Text = "Редагувати викладача";
+            label5.Text = "Редагування викладача";
             textBox1.Text = full_name;
             comboBox1.Text = position;
             comboBox2.Text = department;
@@ -145,7 +145,14 @@ namespace TheUniversity.Forms.Action.Teacher
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Помилка при додаванні викладача: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (isEditMode)
+                    {
+                        MessageBox.Show("Помилка при редагуванні викладача: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Помилка при додаванні викладача: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

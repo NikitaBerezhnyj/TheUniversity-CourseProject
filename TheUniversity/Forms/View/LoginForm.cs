@@ -13,7 +13,6 @@ namespace TheUniversity
         private AuthServices authService;
         private UserServices userServices;
         private SqlConnection connection;
-        private Thread openFormThread;
 
         public LoginForm()
         {
@@ -28,11 +27,17 @@ namespace TheUniversity
             textBox2.Text = Properties.Settings.Default.Password;
         }
 
-        private void OpenViewForm(object viewForm)
+        private void button2_Click(object sender, EventArgs e)
         {
-            if (viewForm is Form form)
+            if (textBox2.UseSystemPasswordChar)
             {
-                Application.Run(form);
+                textBox2.UseSystemPasswordChar = false;
+                button2.Text = "X";
+            }
+            else
+            {
+                textBox2.UseSystemPasswordChar = true;
+                button2.Text = "O";
             }
         }
 

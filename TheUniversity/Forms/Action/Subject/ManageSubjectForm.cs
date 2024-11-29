@@ -32,7 +32,7 @@ namespace TheUniversity.Forms.Action.Subject
 
             isEditMode = false;
 
-            label3.Text = "Додати предмет";
+            label3.Text = "Додавання предмету";
             button1.Text = "Додати";
 
             var dbConfig = new DatabaseConfig();
@@ -46,7 +46,7 @@ namespace TheUniversity.Forms.Action.Subject
 
             isEditMode = true;
 
-            label3.Text = "Редагувати предмет";
+            label3.Text = "Редагування предмету";
             textBox1.Text = selectedName;
             comboBox1.Text = selectedControlType;
             checkBox1.Checked = selectedMandatory;
@@ -126,7 +126,14 @@ namespace TheUniversity.Forms.Action.Subject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Помилка при додаванні предмету: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (isEditMode)
+                    {
+                        MessageBox.Show("Помилка при редагуванні предмету: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Помилка при додаванні предмету: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

@@ -28,7 +28,6 @@ namespace TheUniversity.Forms.View
         private TeacherServices teacherServices;
         private UserServices userServices;
         private SqlConnection connection;
-        private Thread openFormThread;
 
         private Dictionary<string, string> lessonColumnMapping = new Dictionary<string, string>
         {

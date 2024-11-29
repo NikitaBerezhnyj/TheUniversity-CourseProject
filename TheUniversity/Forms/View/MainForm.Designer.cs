@@ -52,6 +52,7 @@
             exportSubjectTableToolStripMenuItem = new ToolStripMenuItem();
             exportTeacherTableToolStripMenuItem = new ToolStripMenuItem();
             exportUserTableToolStripMenuItem = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             closeToolStripMenuItem = new ToolStripMenuItem();
             tabControl1 = new TabControl();
@@ -83,7 +84,6 @@
             button8 = new Button();
             comboBox4 = new ComboBox();
             textBox4 = new TextBox();
-            helpToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -264,6 +264,13 @@
             exportUserTableToolStripMenuItem.Size = new Size(223, 22);
             exportUserTableToolStripMenuItem.Text = "Експортувати користувачів";
             exportUserTableToolStripMenuItem.Click += exportUserTableToolStripMenuItem_Click;
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(61, 20);
+            helpToolStripMenuItem.Text = "Довідка";
+            helpToolStripMenuItem.Click += helpToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -568,13 +575,6 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(114, 23);
             textBox4.TabIndex = 18;
-            // 
-            // helpToolStripMenuItem
-            // 
-            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(75, 20);
-            helpToolStripMenuItem.Text = "Допомога";
-            helpToolStripMenuItem.Click += helpToolStripMenuItem_Click;
             // 
             // MainForm
             // 
