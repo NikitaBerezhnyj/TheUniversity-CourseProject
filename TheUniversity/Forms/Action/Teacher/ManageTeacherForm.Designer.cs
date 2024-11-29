@@ -145,7 +145,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(434, 411);
+            ClientSize = new Size(434, 272);
             Controls.Add(label5);
             Controls.Add(comboBox3);
             Controls.Add(comboBox2);
@@ -158,7 +158,7 @@
             Controls.Add(button1);
             Controls.Add(textBox1);
             Name = "ManageTeacherForm";
-            Text = "ManageTeacherForm";
+            Text = "The University [Teacher]";
             ResumeLayout(false);
             PerformLayout();
         }

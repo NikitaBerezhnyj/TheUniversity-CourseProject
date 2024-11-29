@@ -127,7 +127,7 @@ namespace TheUniversity
             Controls.Add(textBox2);
             Controls.Add(label1);
             Name = "LoginForm";
-            Text = "LoginForm";
+            Text = "The University [Login]";
             ResumeLayout(false);
             PerformLayout();
         }

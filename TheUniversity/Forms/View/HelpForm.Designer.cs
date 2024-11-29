@@ -69,7 +69,7 @@
             Controls.Add(panel1);
             Controls.Add(label1);
             Name = "HelpForm";
-            Text = "HelpForm";
+            Text = "The University [Help]";
             Load += HelpForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

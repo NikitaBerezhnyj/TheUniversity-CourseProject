@@ -414,6 +414,7 @@ namespace TheUniversity.Forms.View
         // Взаємодія з парами
         private void addLessonToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(0);
             ManageLessonForm manageLessonForm = new ManageLessonForm();
             if (manageLessonForm.ShowDialog() == DialogResult.OK)
             {
@@ -423,6 +424,7 @@ namespace TheUniversity.Forms.View
 
         private void editLessonToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(0);
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 if (int.TryParse(dataGridView1.SelectedRows[0].Cells["id"].Value.ToString(), out int selectedId))
@@ -454,6 +456,7 @@ namespace TheUniversity.Forms.View
 
         private void removeLessonToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(0);
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 int selectedUserId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["id"].Value);
@@ -481,6 +484,7 @@ namespace TheUniversity.Forms.View
         // Взаємодія з предметами
         private void addSubjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(1);
             ManageSubjectForm manageSubjectForm = new ManageSubjectForm();
             if (manageSubjectForm.ShowDialog() == DialogResult.OK)
             {
@@ -490,6 +494,7 @@ namespace TheUniversity.Forms.View
 
         private void editSubjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(1);
             if (dataGridView2.SelectedRows.Count > 0)
             {
                 if (int.TryParse(dataGridView2.SelectedRows[0].Cells["id"].Value.ToString(), out int selectedId))
@@ -518,6 +523,7 @@ namespace TheUniversity.Forms.View
 
         private void removeSubjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(1);
             if (dataGridView2.SelectedRows.Count > 0)
             {
                 int selectedUserId = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["id"].Value);
@@ -545,6 +551,7 @@ namespace TheUniversity.Forms.View
         // Взаємодія з викладачами
         private void addTeacherToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(2);
             ManageTeacherForm manageTeacherForm = new ManageTeacherForm();
             if (manageTeacherForm.ShowDialog() == DialogResult.OK)
             {
@@ -554,6 +561,7 @@ namespace TheUniversity.Forms.View
 
         private void editTeacherToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(2);
             if (dataGridView3.SelectedRows.Count > 0)
             {
                 if (int.TryParse(dataGridView3.SelectedRows[0].Cells["id"].Value.ToString(), out int selectedUserId))
@@ -582,6 +590,7 @@ namespace TheUniversity.Forms.View
 
         private void removeTeacherToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(2);
             if (dataGridView3.SelectedRows.Count > 0)
             {
                 int selectedUserId = Convert.ToInt32(dataGridView3.SelectedRows[0].Cells["id"].Value);
@@ -609,6 +618,7 @@ namespace TheUniversity.Forms.View
         // Взаємодія з користувачами
         private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(3);
             ManageUserForm manageUserForm = new ManageUserForm();
             if (manageUserForm.ShowDialog() == DialogResult.OK)
             {
@@ -618,6 +628,7 @@ namespace TheUniversity.Forms.View
 
         private void editUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(3);
             if (dataGridView4.SelectedRows.Count > 0)
             {
                 if (int.TryParse(dataGridView4.SelectedRows[0].Cells["id"].Value.ToString(), out int selectedUserId))
@@ -645,6 +656,7 @@ namespace TheUniversity.Forms.View
 
         private void removeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectTab(3);
             if (dataGridView4.SelectedRows.Count > 0)
             {
                 int selectedUserId = Convert.ToInt32(dataGridView4.SelectedRows[0].Cells["id"].Value);

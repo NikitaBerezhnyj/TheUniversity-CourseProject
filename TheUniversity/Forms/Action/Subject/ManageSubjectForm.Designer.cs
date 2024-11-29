@@ -136,7 +136,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(434, 411);
+            ClientSize = new Size(434, 252);
             Controls.Add(label3);
             Controls.Add(comboBox1);
             Controls.Add(numericUpDown1);
@@ -148,7 +148,7 @@
             Controls.Add(button1);
             Controls.Add(textBox1);
             Name = "ManageSubjectForm";
-            Text = "ManageSubjectForm";
+            Text = "The University [Subject]";
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -124,7 +124,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(434, 411);
+            ClientSize = new Size(434, 228);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -135,7 +135,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "ManageUserForm";
-            Text = "ManageUserForm";
+            Text = "The University [User]";
             ResumeLayout(false);
             PerformLayout();
         }

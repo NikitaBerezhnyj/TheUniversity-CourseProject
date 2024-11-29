@@ -170,7 +170,6 @@ namespace TheUniversity.Forms.Action.Lesson
             {
                 string room = textBox1.Text;
                 DateTime date = dateTimePicker1.Value;
-                //TimeSpan time = dateTimePicker2.Value.TimeOfDay;
                 TimeSpan time = new TimeSpan(dateTimePicker2.Value.Hour, dateTimePicker2.Value.Minute, dateTimePicker2.Value.Second);
                 string lesson_type = comboBox3.Text;
                 string group = textBox2.Text;

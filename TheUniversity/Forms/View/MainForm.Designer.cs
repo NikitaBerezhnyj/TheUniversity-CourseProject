@@ -117,27 +117,27 @@
             // 
             lessonActionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addLessonToolStripMenuItem, editLessonToolStripMenuItem, removeLessonToolStripMenuItem });
             lessonActionsToolStripMenuItem.Name = "lessonActionsToolStripMenuItem";
-            lessonActionsToolStripMenuItem.Size = new Size(148, 22);
+            lessonActionsToolStripMenuItem.Size = new Size(180, 22);
             lessonActionsToolStripMenuItem.Text = "Пари";
             // 
             // addLessonToolStripMenuItem
             // 
             addLessonToolStripMenuItem.Name = "addLessonToolStripMenuItem";
-            addLessonToolStripMenuItem.Size = new Size(163, 22);
+            addLessonToolStripMenuItem.Size = new Size(180, 22);
             addLessonToolStripMenuItem.Text = "Додати пару";
             addLessonToolStripMenuItem.Click += addLessonToolStripMenuItem_Click;
             // 
             // editLessonToolStripMenuItem
             // 
             editLessonToolStripMenuItem.Name = "editLessonToolStripMenuItem";
-            editLessonToolStripMenuItem.Size = new Size(163, 22);
+            editLessonToolStripMenuItem.Size = new Size(180, 22);
             editLessonToolStripMenuItem.Text = "Редагувати пару";
             editLessonToolStripMenuItem.Click += editLessonToolStripMenuItem_Click;
             // 
             // removeLessonToolStripMenuItem
             // 
             removeLessonToolStripMenuItem.Name = "removeLessonToolStripMenuItem";
-            removeLessonToolStripMenuItem.Size = new Size(163, 22);
+            removeLessonToolStripMenuItem.Size = new Size(180, 22);
             removeLessonToolStripMenuItem.Text = "Видалити пару";
             removeLessonToolStripMenuItem.Click += removeLessonToolStripMenuItem_Click;
             // 
@@ -145,7 +145,7 @@
             // 
             subjectActionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addSubjectToolStripMenuItem, editSubjectToolStripMenuItem, removeSubjectToolStripMenuItem });
             subjectActionsToolStripMenuItem.Name = "subjectActionsToolStripMenuItem";
-            subjectActionsToolStripMenuItem.Size = new Size(148, 22);
+            subjectActionsToolStripMenuItem.Size = new Size(180, 22);
             subjectActionsToolStripMenuItem.Text = "Предмети";
             // 
             // addSubjectToolStripMenuItem
@@ -173,7 +173,7 @@
             // 
             teacherActionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addTeacherToolStripMenuItem, editTeacherToolStripMenuItem, removeTeacherToolStripMenuItem });
             teacherActionsToolStripMenuItem.Name = "teacherActionsToolStripMenuItem";
-            teacherActionsToolStripMenuItem.Size = new Size(148, 22);
+            teacherActionsToolStripMenuItem.Size = new Size(180, 22);
             teacherActionsToolStripMenuItem.Text = "Викладачі";
             // 
             // addTeacherToolStripMenuItem
@@ -201,7 +201,7 @@
             // 
             usersActionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addUserToolStripMenuItem, editUserToolStripMenuItem, removeUserToolStripMenuItem });
             usersActionsToolStripMenuItem.Name = "usersActionsToolStripMenuItem";
-            usersActionsToolStripMenuItem.Size = new Size(148, 22);
+            usersActionsToolStripMenuItem.Size = new Size(180, 22);
             usersActionsToolStripMenuItem.Text = "Користувачі";
             // 
             // addUserToolStripMenuItem
@@ -228,13 +228,13 @@
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(145, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // exportActionsToolStripMenuItem
             // 
             exportActionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exportLessonTableToolStripMenuItem, exportSubjectTableToolStripMenuItem, exportTeacherTableToolStripMenuItem, exportUserTableToolStripMenuItem });
             exportActionsToolStripMenuItem.Name = "exportActionsToolStripMenuItem";
-            exportActionsToolStripMenuItem.Size = new Size(148, 22);
+            exportActionsToolStripMenuItem.Size = new Size(180, 22);
             exportActionsToolStripMenuItem.Text = "Експортувати";
             // 
             // exportLessonTableToolStripMenuItem
@@ -584,7 +584,7 @@
             Controls.Add(menuStrip1);
             Controls.Add(tabControl1);
             Name = "MainForm";
-            Text = "MainForm";
+            Text = "The University";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             tabControl1.ResumeLayout(false);
