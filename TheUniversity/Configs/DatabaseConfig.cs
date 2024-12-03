@@ -4,13 +4,19 @@ namespace TheUniversity.Configs
 {
     internal class DatabaseConfig
     {
+        private Config config;
         private SqlConnection connection;
+
+        public DatabaseConfig()
+        {
+            this.config = new Config();
+        }
 
         public SqlConnection OpenConnection()
         {
             if (connection == null)
             {
-                connection = new SqlConnection(@"Server=DESKTOP-TU55I9Q\SQLEXPRESS;Database=TheUniversity;Integrated Security=True;");
+                connection = new SqlConnection(config.ConnectionString);
                 connection.Open();
             }
             return connection;
